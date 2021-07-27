@@ -1,21 +1,23 @@
 <?php 
-$css = ['header','home','footer'];  //add file css
-$javascript = ['home']; // add file javascript
+// $css = ['header','home','footer'];  //add file css
+// $javascript = ['home']; // add file javascript
 
-$this->view('blocks/headHTML',['css'=>$css,
-                               'js'=>$javascript
-                              ]);
-?>                              
+// $this->view('blocks/headHTML',['css'=>$css,
+//                                'js'=>$javascript
+//                               ]);
+$this->view('blocks/headHTML');
+?>                            
 <body>
     <div>
-        <?php $this->view('blocks/header');?> 
+        <!-- Header -->
+        <?php  $this->view('blocks/header');?> 
     </div>
-    <div>
-         <?php //$this->view('pages/'.$data['pages']);?> 
-         <?php $this->view('pages/home');?> 
-    </div>
-    <div>
-        <?php $this->view('blocks/footer');?> 
+    <div class="page-main container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <?php $this->view('blocks/sidebar');?> 
+            <!-- Content -->
+            <?php $this->view('pages/'.$data['page']);?>
+        </div>
     </div>
 </body>
-</html>

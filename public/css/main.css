@@ -1,0 +1,232 @@
+:root {
+    --header-height: 65px;
+    --primary-color: #FCB800;
+}
+body {
+    font-size: 14px;
+    font-family: Roboto, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: #333;
+    background-color: #f5f5f5;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+input[type="text"]:focus {
+    outline: none;
+}
+
+.active {
+    color: #E98F36 !important;
+}
+
+form .col-form-label.required::after {
+    position: absolute;
+    content: "*";
+    color: red;
+    padding-left: 4px;
+}
+
+.btn.btn-primary {
+    background-color: var(--primary-color);
+    color: #333;
+    border: none;
+    border-radius: 10px;
+    font-weight: 500;
+    padding: 8px 16px;
+}
+
+.btn.btn-primary:hover {
+    background-color: #E3A500;
+    transition: all 0.3s ease;
+}
+
+.display-4 {
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+    font-weight: 400;
+}
+
+.dropdown-toggle::after {
+    display: none;
+}
+
+.dropdown-menu {
+    padding: 0;
+}
+
+.dropdown-item {
+    padding: 0.5rem 1rem;
+}
+
+.container-fluid {
+    padding: 0 20px;
+}
+
+.row {
+    margin: 0 -20px;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: var(--header-height);
+    background-color: #fff;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border-radius: 10px;
+    z-index: 999;
+}
+
+.header-brand {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-brand h3 {
+    font-size: 22px;
+    font-weight: 400;
+    margin: 0;
+}
+
+.header-brand__img {
+    width: 100px;
+    height: 65px;
+}
+
+.header-brand__img img {
+    width: 100%;
+}
+
+.header-account {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.header-account__name p{
+    line-height: 40px;
+    margin: 0;
+    padding-left: 8px;
+}
+
+.header-account__avatar {
+    width: 40px;
+    border-radius: 50%;
+}
+
+.header-account__avatar img {
+    width: 100%;
+    border-radius: 50%;
+}
+
+.page-main {
+    padding-top: var(--header-height);
+}
+
+.sidebar {
+    background-color: #fbfbfb;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    top: var(--header-height);
+    left: 0;
+    bottom: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    overflow-y: auto;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    width: 260px;
+}
+
+.copyright {
+    padding-bottom: 15px;
+}
+
+.copyright p{
+    margin: 0;
+    text-align: center;
+    font-size: 13px;
+}
+
+.copyright i{
+    color: #ed5050;
+}
+
+.sidebar-list {
+    padding: 15px 0 15px 15px;
+}
+
+.sidebar-item i {
+    width: 20px;
+}
+
+.sidebar-link,
+.sidebar-child__link {
+    color: #333;
+    font-size: 15px;
+    display: block;
+    padding: 4px 0;
+}
+
+.sidebar-link:hover,
+.sidebar-child__link:hover {
+    color: var(--primary-color);
+    transition: all 0.3s ease;
+}
+
+.sidebar-child {
+    padding-left: 25px;
+}
+
+.sidebar-child__link i {
+    width: 10px;
+    font-size: 10px;
+    position: relative;
+    top: -2px;
+}
+
+.content {
+    position: relative;
+    padding: 20px;
+    padding-left: 25px;
+    margin-left: 253px;
+
+}
+
+.content-wrapper {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.content .heading {
+    border-bottom: 1px solid #e6e6e6;
+    padding: 0 20px;
+    margin-bottom: 20px;
+}
+
+/* Account */
+.account-update .row {
+    margin: 0;
+    justify-content: center;
+}
+
+.account-update label {
+    text-align: right;
+}

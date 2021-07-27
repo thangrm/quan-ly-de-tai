@@ -4,7 +4,7 @@
             //model
 
             //view
-            $vi = $this->view("layout");
+            $vi = $this->view("layout", ["page"=>"home"]);
         }
     }
 ?>
