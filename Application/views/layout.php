@@ -1,6 +1,6 @@
 <?php 
-// $css = ['header','home','footer'];  //add file css
-// $javascript = ['home']; // add file javascript
+// $css = ['header.css','home.css','footer.css'];  //add file css
+// $javascript = ['home.js']; // add file javascript
 
 // $this->view('blocks/headHTML',['css'=>$css,
 //                                'js'=>$javascript

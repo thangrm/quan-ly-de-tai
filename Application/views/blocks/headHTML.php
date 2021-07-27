@@ -13,18 +13,18 @@
     <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="public/css/reset.css">
-    <link rel="stylesheet" type="text/css" href="public/css/main.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo getPathCSS('reset.css'); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo getPathCSS('main.css'); ?>">
     <?php
         if(!empty($data['css'])){
             foreach ($data['css'] as $key => $value) {
-                echo '<link rel="stylesheet" type="text/css" href="public/css/'.$value.'.css">';
+                echo '<link rel="stylesheet" type="text/css" href="'.getPathCSS($value).'">';
             }
         }
 
         if(!empty($data['js'])){
             foreach ($data['js'] as $key => $value) {
-                echo '<script src="public/javascript/'.$value.'.js"></script>';
+                echo '<script src="'.getPathJS($value).'"></script>';
             }
         }
     ?>

@@ -1,9 +1,5 @@
 <?php
 // Hàm lấy base url bằng PHP
-function getUrl($controller){
-    return getBaseUrl().$controller;
-}
-
 function getBaseUrl() {
     // output: /myproject/index.php
     $currentPath = $_SERVER['PHP_SELF'];
@@ -19,5 +15,24 @@ function getBaseUrl() {
 
     // return: http://localhost/myproject/
     return ($protocol . '://' . $hostName . $pathInfo['dirname'] . "/");
+}
+
+//Hàm lấy đường dẫn file css
+function getPathCSS($nameFile){
+    return getBaseUrl().'public/css/'.$nameFile;
+}
+
+//Hàm lấy đường dẫn file javascript
+function getPathJS($nameFile){
+    return getBaseUrl().'public/javascript/'.$nameFile;
+}
+
+//Hàm lấy đường dẫn ảnh
+function getPathImg($nameFile){
+    return getBaseUrl().'public/images/'.$nameFile;
+}
+
+function getUrl($controller){
+    return getBaseUrl().$controller;
 }
 ?>
