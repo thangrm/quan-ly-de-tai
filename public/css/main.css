@@ -19,19 +19,45 @@ a {
     text-decoration: none;
 }
 
+img {
+    width: 100%;
+}
+
 input[type="text"]:focus {
     outline: none;
 }
 
-.active {
-    color: #E98F36 !important;
-}
-
+form .form-label.required::after,
 form .col-form-label.required::after {
     position: absolute;
     content: "*";
     color: red;
     padding-left: 4px;
+}
+
+.form-action {
+    text-align: center;
+}
+
+.w-30 {
+    width: 30% !important;
+}
+
+.w-40 {
+    width: 40% !important;
+}
+
+.search-btn {
+    padding: 6px 28px;
+}
+
+fieldset {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.active {
+    color: #E98F36 !important;
 }
 
 .btn.btn-primary {
@@ -40,7 +66,7 @@ form .col-form-label.required::after {
     border: none;
     border-radius: 10px;
     font-weight: 500;
-    padding: 8px 16px;
+    padding: 9px 18px;
 }
 
 .btn.btn-primary:hover {
@@ -50,6 +76,7 @@ form .col-form-label.required::after {
 
 .display-4 {
     font-size: 1.4rem;
+    margin-top: 5px;
     margin-bottom: 20px;
     font-weight: 400;
 }
@@ -74,6 +101,7 @@ form .col-form-label.required::after {
     margin: 0 -20px;
 }
 
+/* Header */
 .header {
     position: fixed;
     top: 0;
@@ -137,6 +165,7 @@ form .col-form-label.required::after {
     padding-top: var(--header-height);
 }
 
+/* Sidebar */
 .sidebar {
     background-color: #fbfbfb;
     position: fixed;
@@ -217,8 +246,41 @@ form .col-form-label.required::after {
 
 .content .heading {
     border-bottom: 1px solid #e6e6e6;
-    padding: 0 20px;
     margin-bottom: 20px;
+}
+
+/* Login */
+.login-page {
+    width: 450px;
+    background-color: #fff;
+    padding: 20px;
+    margin: 80px auto;
+    border-radius: 10px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.login-heading {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.login-heading-logo {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.login-heading-logo img {
+    width: 150px;
+}
+
+.login-heading-title {
+    text-align: center;
+    padding: 10px 0 20px;
+}
+
+.login-page button {
+    width: 50%;
 }
 
 /* Account */
@@ -229,4 +291,144 @@ form .col-form-label.required::after {
 
 .account-update label {
     text-align: right;
+}
+
+/* Thesis list */
+.status.waiting {
+    color: #fbfbfb;
+    display: block;
+    background-color: #E98F36;
+    text-align: center;
+    padding: 0.8px 0;
+}
+
+.status.approved {
+    color: #fbfbfb;
+    display: block;
+    background-color: #4ab84a;
+    text-align: center;
+    padding: 0.8px 0;
+}
+
+/* Group */
+.group-heading {
+    position: relative;
+}
+
+.group-name {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.group-name h4{
+    
+    color: #fff;
+    padding-left: 20px;
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+.group-content {
+    margin: 20px 0;
+}
+
+.assingment{
+    display: flex;
+    align-items: center;
+    border: 1px solid #dadce0;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.assingment:hover {
+    background-color: #f1f3f4;
+}
+
+.assingment-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    padding: 14.7px 17.9px;
+    margin-right: 15px;
+}
+
+.assingment-icon i {
+    font-size: 1.6rem;
+    color: #333;
+}
+
+.assingment-detail span{
+    font-size: 1.4rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow-y: hidden;
+}
+
+.assingment-link,
+.assingment-link:hover {
+    color: #333;
+}
+
+/* View assigment */
+.view-assign.assingment {
+    border: none;
+    pointer-events: none;
+}
+
+.view-assign .assingment-detail-heading {
+    font-size: 1.8rem;
+}
+
+.view-assign-heading {
+    display: flex;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e6e6e6;
+    margin-bottom: 20px;
+}
+
+.view-assign .assingment-icon {
+    position: relative;
+    top: 4px;
+}
+
+.view-assign-content {
+    margin: 0;
+}
+
+.view-assign-infor-wrapper {
+    border-bottom: 1px solid #e6e6e6;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+.assingment-deadline {
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+}
+
+.assingment-action {
+    border: 1px solid #e6e6e6;
+    padding: 20px;
+    border-radius: 10px;
+    height: fit-content;
+}
+
+.assingment-action-title {
+    font-size: 1.6rem;
+    margin-bottom: 16px;
+}
+
+.view-assign-cmt-action {
+    margin: 20px 0;
+}
+
+.view-assign-cmt-action button {
+    width: 10%;
 }

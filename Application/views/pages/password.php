@@ -1,3 +1,4 @@
+<?php $page = 'password' ?>
 <div class="col-10 content account-update">
     <div class="content-wrapper">
         <div class="heading">
