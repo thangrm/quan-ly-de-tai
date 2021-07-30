@@ -28,15 +28,47 @@
                         </div>
                     </div>
 
-                    <div class="view-assign-cmt">
+                    <div class="assignment-result d-flex align-items-center mb-20 ">
+                        <h4>Điểm</h4>
+                        <span class="assignment-mark">9</span>
+                    </div>
+
+                    <div class="assignment-cmt">
                         <label for=""  class="form-label">
                             <i class="far fa-comment-alt"></i>    
-                            Thêm ý kiến
+                            Nhận xét
                         </label>
-                        <textarea class="form-control" id="" rows="3"></textarea>
-                        <div class="view-assign-cmt-action">
-                            <button type="button" class="btn btn-secondary ">Gửi</button>
+
+                        <div class="comment-wrapper"> 
+                            <div class="d-flex align-items-center">
+                                <div class="cmt-avatar">
+                                    <img src="<?php echo getPathImg('user.png'); ?>" alt="" class="rounded-circle">
+                                </div>
+                                <h5 class="cmt-user-name mg-0">Trần Phương Nhung</h5> 
+                                <span class="cmt-time">- 16:00, 30/07/2021</span>
+                            </div>
+                            <p class="cmt-content mg-0">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus numquam assumenda hic aliquam vero sequi velit molestias doloremque molestiae dicta?</p>
                         </div>
+
+                        <div class="comment-wrapper"> 
+                            <div class="d-flex align-items-center">
+                                <div class="cmt-avatar">
+                                    <img src="<?php echo getPathImg('user.png'); ?>" alt="" class="rounded-circle">
+                                </div>
+                                <h5 class="cmt-user-name mg-0">Nguyễn Mộng Mơ</h5> 
+                                <span class="cmt-time">- 16:10, 30/07/2021</span>
+                            </div>
+                            <p class="cmt-content mg-0">Vâng ạ ^^</p>
+                        </div>
+
+                        <div class="comment-add">
+                            <label for="" class="form-label">
+                                <i class="fas fa-comment-medical"></i>
+                                Thêm nhận xét
+                            </label>
+                            <textarea class="form-control" id="" rows="3"></textarea>
+                        </div>
+                        
                     </div>
                 </div>
                 <div class="col-4 assingment-action">
@@ -47,7 +79,7 @@
                         <input class="form-control" type="file" id="formFileMultiple" multiple>
                     </div>
                     <div class="form-action">
-                        <button type="submit" class="btn btn-primary w-40">Nộp bài</button>
+                        <button type="submit" class="btn btn-primary btn-warning w-40">Nộp bài</button>
                     </div>
                 </div>
             </div>

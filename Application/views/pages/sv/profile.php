@@ -14,7 +14,7 @@
                 <div class="row mb-3">
                     <label for="" class="col-sm-2 col-form-label">Mật khẩu</label>
                     <div class="col-sm-6 d-flex align-items-center">
-                    <a href="<?php echo getBaseUrl()."account/password";?>">Đổi mật khẩu</a>
+                    <a href="<?php echo getBaseUrl()."sv/account/password";?>">Đổi mật khẩu</a>
                     </div>
                 </div>
                 <div class="row mb-3">
@@ -44,7 +44,7 @@
                 <div class="row mb-3">
                     <label for="" class="col-sm-2 col-form-label"></label>
                     <div class="col-sm-6">
-                        <button type="button" class="btn btn-primary">Lưu thay đổi</button>
+                        <button type="button" class="btn btn-primary btn-warning">Lưu thay đổi</button>
                     </div>
                 </div>
                 </form>

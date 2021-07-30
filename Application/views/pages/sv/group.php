@@ -12,14 +12,14 @@
             </div>
         </div>
         <div class="group-content">
-            <a href="<?php echo getBaseUrl()."group/viewassignment";?>" class="assingment-link">
+            <a href="<?php echo getBaseUrl()."sv/group/viewassignment";?>" class="assingment-link">
                 <div class="assingment">
                     <div class="assingment-icon">
                         <i class="fas fa-clipboard-list"></i>
                     </div>
                     <div class="assingment-info">
                         <div class="assingment-detail">
-                            <span>Nộp báo cáo tiến độ tuần 1</span>
+                            <span class="assingment-detail-heading">Nộp báo cáo tiến độ tuần 1</span>
                         </div> 
                         <div class="assingment-time">
                             <span>28/07/2021</span>
@@ -27,14 +27,14 @@
                     </div>
                 </div>
             </a>
-            <a href="<?php echo getBaseUrl()."group/viewassignment";?>" class="assingment-link">
+            <a href="<?php echo getBaseUrl()."sv/group/viewassignment";?>" class="assingment-link">
                 <div class="assingment">
                     <div class="assingment-icon">
                         <i class="fas fa-clipboard-list"></i>
                     </div>
                     <div class="assingment-info">
                         <div class="assingment-detail">
-                            <span>Nộp báo cáo tiến độ tuần 1</span>
+                            <span class="assingment-detail-heading">Nộp báo cáo tiến độ tuần 1</span>
                         </div> 
                         <div class="assingment-time">
                             <span>28/07/2021</span>
@@ -42,14 +42,14 @@
                     </div>
                 </div>
             </a>
-            <a href="<?php echo getBaseUrl()."group/viewassignment";?>" class="assingment-link">
+            <a href="<?php echo getBaseUrl()."sv/group/viewassignment";?>" class="assingment-link">
                 <div class="assingment">
                     <div class="assingment-icon">
                         <i class="fas fa-clipboard-list"></i>
                     </div>
                     <div class="assingment-info">
                         <div class="assingment-detail">
-                            <span>Nộp báo cáo tiến độ tuần 1</span>
+                            <span class="assingment-detail-heading">Nộp báo cáo tiến độ tuần 1</span>
                         </div> 
                         <div class="assingment-time">
                             <span>28/07/2021</span>

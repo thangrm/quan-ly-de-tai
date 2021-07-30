@@ -1,4 +1,4 @@
-<div class="col-10 content account-update">
+<div class="col-10 content">
     <div class="content-wrapper">
         <div class="heading">
             <h1 class="display-4">Đăng ký đề tài</h1>
@@ -19,6 +19,14 @@
                         </select>
                     </div>
                     <div class="mb-3">
+                        <label for="lecturer" class="form-label required">Chọn mảng đề tài</label>
+                        <select id="lecturer" class="form-select">
+                            <option>--Chọn mảng đề tài--</option>
+                            <option>Website</option>
+                            <option>An toàn bảo mật thông tin</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
                         <label for="co-worker" class="form-label">Sinh viên cùng thực hiện</label>
                         <input type="text" id="co-worker" class="form-control">
                     </div>
@@ -27,7 +35,7 @@
                         <textarea class="form-control" id="description" rows="3" placeholder="Mô tả vắn tắt đề tài..."></textarea>
                     </div>
                     <div class="form-action">
-                        <button type="submit" class="btn btn-primary w-30">Đăng ký</button>
+                        <button type="submit" class="btn btn-primary btn-warning w-30">Đăng ký</button>
                     </div>
                 </fieldset>
             </form>

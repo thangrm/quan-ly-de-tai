@@ -7,7 +7,7 @@ class conectMV{
         return new $model;
     }
     
-    function view($view,$data=[])
+    function view($view, $data=[])
     {
         require_once "./Application/views/".$view.".php";
     }

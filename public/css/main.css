@@ -39,12 +39,40 @@ form .col-form-label.required::after {
     text-align: center;
 }
 
+.mg-0 {
+    margin: 0 !important;
+}
+
+.mg-20 {
+    margin: 20px;
+}
+
+.mb-20 {
+    margin-bottom: 20px;
+}
+
+.mg--10 {
+    margin: 0 -10px !important;
+}
+
+.pd-4 {
+    padding: 0 4px;
+}
+
+.w-15 {
+    width: 15% !important;
+}
+
 .w-30 {
     width: 30% !important;
 }
 
 .w-40 {
     width: 40% !important;
+}
+
+.w-100 {
+    width: 100% !important;
 }
 
 .search-btn {
@@ -72,6 +100,13 @@ fieldset {
 .btn.btn-primary:hover {
     background-color: #E3A500;
     transition: all 0.3s ease;
+}
+
+.btn.btn-fix {
+    border: none;
+    border-radius: 10px;
+    font-weight: 500;
+    padding: 9px 18px;
 }
 
 .display-4 {
@@ -310,6 +345,14 @@ fieldset {
     padding: 0.8px 0;
 }
 
+.status.rejected {
+    color: #fbfbfb;
+    display: block;
+    background-color: #595e59;
+    text-align: center;
+    padding: 0.8px 0;
+}
+
 /* Group */
 .group-heading {
     position: relative;
@@ -431,4 +474,55 @@ fieldset {
 
 .view-assign-cmt-action button {
     width: 10%;
+}
+
+.assignment-mark {
+    display: flex;
+    width: 35px;
+    height: 35px;
+    background-color: #969696;
+    color: #fff;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    justify-content: center;
+    align-items: center;
+    margin: 0 0 8px 6px;
+}
+
+.comment-wrapper {
+    border: 1px solid #e6e6e6;
+    border-radius: 0.25rem;
+    padding: 10px;
+    background-color: #fafafa;
+    margin-bottom: 15px;
+}
+
+.cmt-avatar {
+    width: 40px;
+    height: 40px;
+}
+
+.cmt-user-name {
+    padding: 0 8px;
+}
+
+.cmt-content {
+    padding-top: 8px;
+}
+
+.comment-add {
+    padding-top: 10px;
+}
+
+/* Quản lý đề tài */
+.table-btn,
+.thesis-action-btn {
+    line-height: 1.2rem;
+    padding: 0 4px !important;
+    font-size: 0.9rem;
+}
+
+.mark-assignment label{
+    font-size: 1.2rem;
+    font-weight: 500;
 }

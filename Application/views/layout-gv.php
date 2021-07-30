@@ -15,9 +15,9 @@ $this->view('blocks/headHTML');
     <div class="page-main container-fluid">
         <div class="row">
             <!-- Sidebar -->
-            <?php $this->view('blocks/sidebar');?> 
+            <?php $this->view('blocks/sidebar-gv');?> 
             <!-- Content -->
-            <?php $this->view('pages/'.$data['page']);?>
+            <?php $this->view('pages/gv/'.$data['page']);?>
         </div>
     </div>
 </body>

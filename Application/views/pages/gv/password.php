@@ -27,7 +27,7 @@
                 <div class="row mb-3">
                     <label for="" class="col-sm-2 col-form-label"></label>
                     <div class="col-sm-6">
-                        <button type="button" class="btn btn-primary">Xác nhận</button>
+                        <button type="button" class="btn btn-primary btn-warning">Xác nhận</button>
                     </div>
                 </div>
             </form>
