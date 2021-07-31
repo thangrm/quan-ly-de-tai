@@ -39,6 +39,10 @@ form .col-form-label.required::after {
     text-align: center;
 }
 
+.pd-0 {
+    padding: 0 !important;
+}
+
 .mg-0 {
     margin: 0 !important;
 }
@@ -57,6 +61,10 @@ form .col-form-label.required::after {
 
 .pd-4 {
     padding: 0 4px;
+}
+
+.pd-20 {
+    padding-right: 20px !important;
 }
 
 .w-15 {
@@ -525,4 +533,146 @@ fieldset {
 .mark-assignment label{
     font-size: 1.2rem;
     font-weight: 500;
+}
+
+/* -------------------------------- */
+/* Admin Page */
+
+.admin-sidebar {
+    background-color: #343A40;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 250px;
+    overflow-y: auto;
+    height: 100vh;
+}
+
+.admin-sidebar-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #4b545c;
+}
+
+.admin-sidebar-header h3 {
+    color: #00C8EC;
+    margin: 0;
+    padding-left: 8px;
+}
+
+.admin-logo {
+    width: 40px;
+    height: 40px;
+}
+
+.admin-sidebar-list {
+    padding: 15px 0;
+    flex: 1;
+}
+
+.admin-sidebar-link {
+    color: rgba(255,255,255,.8);
+    padding: 8px 15px;
+    display: block;
+}
+
+.admin-sidebar-link i {
+    width: 20px;
+    text-align: center;
+}
+
+.admin-sidebar-link:hover,
+.admin-sidebar-child__link:hover {
+    background-color: #494E53;
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+.admin-sidebar-child__link {
+    padding: 6px 6px 6px 40px;
+    color: rgba(255,255,255,.8);
+    display: block;
+}
+
+.admin-sidebar-child__link i{
+    font-size: 0.6rem;
+    position: relative;
+    top: -2px;
+}
+
+.admin-sidebar .copyright {
+    color: rgba(255,255,255,.8);
+    text-align: center;
+    width: 100%;
+    padding: 15px;
+}
+
+.admin-header {
+    margin-left: 250px;
+    display: flex;
+    justify-content: space-between;
+    padding: 15.5px 15px;
+    border-bottom: 1px solid #dee2e6;
+    background-color: #fff;
+}
+
+.admin-header-brand {
+    display: flex;
+    align-items: center;
+}
+
+.admin-sidebar-link.active {
+    color: #00C8EC !important;
+}
+
+.admin-content {
+    margin-left: -6px;
+}
+
+.admin-main .heading {
+    padding: 20px 15px;
+    margin: 15px;
+    background-color: #fefefe;
+}
+
+.admin-main .heading h1 {
+    margin: 0;
+}
+
+.admin-main-content {
+    padding: 15px;
+    background-color: #fefefe;
+    margin: 0 15px;
+}
+
+.admin-main .student-list {
+    padding: 15px 0;
+}
+
+/* Custom scrollbar in sidebar */
+
+/* width */
+.scrollbar::-webkit-scrollbar {
+    width: 5px;
+}
+  
+  /* Track */
+.scrollbar::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+
+/* Handle */
+.scrollbar::-webkit-scrollbar-thumb {
+    background: #888; 
+}
+
+/* Handle on hover */
+.scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #666; 
 }

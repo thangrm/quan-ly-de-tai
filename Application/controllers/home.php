@@ -7,3 +7,4 @@
             $vi = $this->view("layout-sv", ["page"=>"home"]);
         }
     }
+?>

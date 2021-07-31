@@ -2,7 +2,7 @@
     $currentPage = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 ?>
 
-<div class="col-2 sidebar">
+<div class="col-2 sidebar scrollbar">
     <ul class="sidebar-list">
         <li class="sidebar-item">
             <a href="<?php echo getBaseUrl()."gv"?>" class="sidebar-link <?php  if($currentPage == getBaseUrl()) echo "active "?>">
