@@ -5,26 +5,32 @@
         protected $params = [];
 
         function __construct(){
-
+            $folderController = "./Application/controllers/";
             $arr = $this->urlProcess();
 
             //xu ly cotroller
-            if(isset($arr[0]))
-            {
-                if(file_exists("./Application/controllers/".$arr[0].".php")){
-                $this->controller = $arr[0];
+            if(isset($arr[0])){
+                if($arr[0] === "api"){
+                    require_once "API.php";
+                    array_shift($arr);
+                    $folderController = "./Application/api/";
+                    $this->controller = "notFound";
+                    $this->action = "error";
                 }
-                unset($arr[0]);
+
+                if(file_exists($folderController.$arr[0].".php")){
+                    $this->controller = array_shift($arr);
+                }
             }
-            require_once "./Application/controllers/".$this->controller.".php";
+
+            require_once $folderController.$this->controller.".php";
             $this->controller = new $this->controller;
 
             //xu ly action
-            if(isset($arr[1])){
-                if(method_exists($this->controller,$arr[1])){
-                    $this->action = $arr[1];
+            if(isset($arr[0])){
+                if(method_exists($this->controller,$arr[0])){
+                    $this->action = array_shift($arr);
                 }
-                unset($arr[1]);
             }
             
             //xu ly param
