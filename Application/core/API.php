@@ -1,15 +1,18 @@
 <?php    
     class API extends conectMV
     {
-        // Các method của HTTP
+        // Method of request
         protected $method = '';
 
-        // Quyền hạn của request
-        protected $role = null;
+        // Role of request
+        protected $role = -1;
 
-        public $ADMIN_ROLE = 1;
-        public $GIAOVIEN_ROLE = 2;
-        public $SINHVIEN_ROLE = 3;
+        public $ROLE_GUEST = -1;
+        public $ROLE_ADMIN = 1;
+        public $ROLE_GIAOVIEN = 2;
+        public $ROLE_SINHVIEN = 3;
+        public $LIST_ALL_MEMBER = [1,2,3];
+        public $LIST_ALL = [-1,1,2,3]; 
 
         public function __construct() {
             header("Access-Control-Allow-Orgin: *");
@@ -46,14 +49,38 @@
             $this->role = $this->getRoleUser();
         }
 
+        /* Get the role of request */
         protected function getRoleUser() {
             if(isset($_SESSION['login']['role'])){
                 return $_SESSION['login']['role'];
             }else{
-                return null;
+                return $this->ROLE_GUEST;
             }
         }
 
+        protected function checkAllowedRole($listRole = []){
+            return in_array($this->role, $listRole);
+        }
+
+        /* Get value metod get and post */
+        protected function getValueMethodGet($var, $default){
+            if(isset($_GET[$var])){
+                return $_GET[$var];
+            }else{
+                return $default;
+            }
+        }   
+        
+        protected function getValueMethodPost($var, $default){
+            if(isset($_POST[$var])){
+                return $_POST[$var];
+            }else{
+                return $default;
+            }
+        }    
+
+
+        /* Response API */
         protected function response($data, $status = 200) {
             header("HTTP/1.1 " . $status . " " . $this->requestStatus($status));
             return json_encode($data);
