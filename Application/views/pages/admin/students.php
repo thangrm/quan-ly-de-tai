@@ -55,6 +55,10 @@
                                     <label for="" class="form-label ">Địa chỉ</label>
                                     <input type="text" id="" class="form-control" placeholder="">
                                 </div>
+                                <div class="mb-3">
+                                    <label for="" class="form-label ">Ảnh</label>
+                                    <input type="file" id="" class="form-control">
+                                </div>
                             </fieldset>
                         </form>
                     </div>
@@ -83,20 +87,30 @@
                 <thead>
                     <tr>
                         <th scope="col">STT</th>
+                        <th scope="col">Mã SV</th>
                         <th scope="col">Họ tên</th>
                         <th scope="col">Ngành</th>
                         <th scope="col">Khóa</th>
                         <th scope="col">Ngày sinh</th>
-                        <th class="w-15">Thao tác</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">SĐT</th>
+                        <th scope="col">Địa chỉ</th>
+                        <th scope="col">Ảnh</th>
+                        <th class="col">Thao tác</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                    <th scope="row">1</th>
+                        <th scope="row">1</th>
+                        <td>2018001002</td>
                         <td>Nguyễn Mộng Mơ</td>
                         <td>Kỹ thuật phầm mềm</td>
-                        <td>K13</td>
+                        <td>13</td>
                         <td>29/01/2000</td>
+                        <td>mail@gmail.com</td>
+                        <td>012345689</td>
+                        <td>Hà Nội</td>
+                        <td class="text-center"><img style="width: 30px;" src="<?php echo getPathImg('user.png'); ?>"></td>
                         <td>
                             <!-- Edit student info -->
                             <button type="button" class="btn btn-secondary thesis-action-btn" data-bs-toggle="modal" data-bs-target="#update-student-info"><i class="far fa-edit pd-4"></i>Sửa</button>
@@ -111,11 +125,11 @@
                                         <form>
                                             <fieldset >
                                                 <div class="mb-3">
-                                                    <label for="" class="form-label required">Họ và tên</label>
+                                                    <label for="" class="form-label ">Họ và tên</label>
                                                     <input type="text" id="" class="form-control" value="Nguyễn Mộng Mơ">
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="" class="form-label required">Ngành</label>
+                                                    <label for="" class="form-label ">Ngành</label>
                                                     <select id="" class="form-select">
                                                         <option>Kỹ thuật phần mềm</option>
                                                         <option>Công nghệ thông tin</option>
@@ -124,7 +138,7 @@
                                                     </select>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="" class="form-label required">Khóa</label>
+                                                    <label for="" class="form-label ">Khóa</label>
                                                     <select id="" class="form-select">
                                                         <option>K13</option>
                                                         <option>K14</option>
@@ -132,7 +146,7 @@
                                                     </select>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="assignment-title" class="form-label required pd-20">Ngày sinh</label>
+                                                    <label for="assignment-title" class="form-label  pd-20">Ngày sinh</label>
                                                     <input type="date" id="start" name="trip-start" value="" min="2000-01-01" max="2003-12-31">
                                                 </div>
                                                 <div class="mb-3">
@@ -146,6 +160,10 @@
                                                 <div class="mb-3">
                                                     <label for="" class="form-label ">Địa chỉ</label>
                                                     <input type="text" id="" class="form-control" value="Hà Nội">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="" class="form-label ">Ảnh</label>
+                                                    <input type="file" id="" class="form-control">
                                                 </div>
                                             </fieldset>
                                         </form>
