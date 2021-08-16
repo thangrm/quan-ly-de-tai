@@ -119,5 +119,36 @@
                 echo $this->responseStatus(405); 
             }
         }
+
+        // add new a user
+        function new(){
+            if($this->method == 'POST'){
+                $checkRole = $this->checkAllowedRole([$this->ROLE_ADMIN]);
+
+                if($checkRole){
+                    $roleUser = $this->getValueMethodPost('role',null);
+                    $name = $this->getValueMethodPost('name',null);
+                    $birthday = $this->getValueMethodPost('birthday',null);
+                    $email = $this->getValueMethodPost('email',null);
+                    $phone = $this->getValueMethodPost('phone',null);
+                    $address = $this->getValueMethodPost('address',null);
+                    $majors = $this->getValueMethodPost('majors',null);
+                    $kh = $this->getValueMethodPost('kh',null);
+                    $ns = $this->getValueMethodPost('ns',null);
+
+                    $model = $this->model('userModel');
+                    $rs = $model->add($roleUser, $name, $birthday, $email, $phone, $address, $majors, $kh, $ns);
+                    if($rs['register'])
+                        echo $this->response($rs);
+                    else
+                        echo $this->responseStatus($rs['code']);
+                }else{
+                    echo $this->responseStatus(401); 
+                }
+
+            }else{
+                echo $this->responseStatus(405); 
+            }
+        }
     }
 ?>
