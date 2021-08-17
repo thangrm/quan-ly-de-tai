@@ -2,8 +2,21 @@
 class userModel extends DB
 {
     function getUserByID($id)
-    { 
+    {
+        $char = substr($id,0,2);
         $sql = "SELECT * FROM taikhoan WHERE ma_taikhoan = ? AND hoatdong = 1";
+        if($char == 'SV'){
+            $sql = "SELECT taikhoan.*, sinhvien.*, tennganh, tenkhoahoc FROM sinhvien 
+                    INNER JOIN taikhoan on taikhoan.ma_taikhoan = sinhvien.ma_sv
+                    INNER JOIN nganh on nganh.ma_nganh = sinhvien.ma_nganh
+                    INNER JOIN khoahoc on khoahoc.ma_khoahoc = sinhvien.ma_khoahoc
+                    WHERE ma_taikhoan = ? AND hoatdong = 1";
+        }else if($char == 'GV'){
+            $sql = "SELECT * FROM taikhoan 
+                    INNER JOIN giaovien on taikhoan.ma_taikhoan = giaovien.ma_gv
+                    WHERE ma_taikhoan = ? AND hoatdong = 1";
+        }
+
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param('s', $id);
         $stmt->execute();
@@ -20,6 +33,15 @@ class userModel extends DB
             $user['email'] = $row['email'];
             $user['phone'] = $row['sdt'];
             $user['address'] = $row['diachi'];  
+            if($char == 'SV'){
+                $user['majors'] = ['majors_id'=>$row['ma_nganh'],
+                                   'majors_name'=>$row['tennganh']];
+
+                $user['kh'] = ['kh_id'=>$row['ma_khoahoc'],
+                               'kh_name'=>$row['tenkhoahoc']];                 
+            }else if($char == 'GV'){
+                $user['ns'] = $row['gioihansinhvien'];
+            }
         }
 
         $stmt->close();
@@ -31,7 +53,20 @@ class userModel extends DB
     { 
         $name = "%$name%";
         $offset = ($page - 1) * $limit;
-        $sql = "SELECT * FROM taikhoan WHERE hoten like ? AND loaitaikhoan = ? LIMIT ?, ?";
+        $sql = "SELECT * FROM taikhoan WHERE hoten like ? AND loaitaikhoan = ? AND hoatdong = 1 LIMIT ?, ?";
+        if($role == 3){
+            $sql = "SELECT taikhoan.*, sinhvien.*, tennganh, tenkhoahoc FROM sinhvien 
+                    INNER JOIN taikhoan on taikhoan.ma_taikhoan = sinhvien.ma_sv
+                    INNER JOIN nganh on nganh.ma_nganh = sinhvien.ma_nganh
+                    INNER JOIN khoahoc on khoahoc.ma_khoahoc = sinhvien.ma_khoahoc
+                    WHERE hoten like ? AND loaitaikhoan = ? AND hoatdong = 1 LIMIT ?, ?";
+        }else if($role == 2){
+            $sql = "SELECT * FROM taikhoan 
+                    INNER JOIN giaovien on taikhoan.ma_taikhoan = giaovien.ma_gv
+                    WHERE hoten like ? AND loaitaikhoan = ? AND hoatdong = 1 LIMIT ?, ?";
+        }
+
+
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param('siii', $name, $role, $offset, $limit);
 
@@ -50,6 +85,15 @@ class userModel extends DB
             $user['email'] = $row['email'];
             $user['phone'] = $row['sdt'];
             $user['address'] = $row['diachi'];  
+            if($role == 3){
+                $user['majors'] = ['majors_id'=>$row['ma_nganh'],
+                                   'majors_name'=>$row['tennganh']];
+
+                $user['kh'] = ['kh_id'=>$row['ma_khoahoc'],
+                               'kh_name'=>$row['tenkhoahoc']];                 
+            }else if($role == 2){
+                $user['ns'] = $row['gioihansinhvien'];
+            }
             array_push($listUser,$user);
         }
         
@@ -59,6 +103,7 @@ class userModel extends DB
     }
 
     function add($role, $name, $birthday, $email, $phone, $address, $majors, $kh, $ns){
+
         // generate PASS
         $code = rand(100,999);
         $pass = password_hash($code,PASSWORD_DEFAULT);
@@ -67,7 +112,7 @@ class userModel extends DB
         $rs = ['register'=>false,
                'id' => null,
                'pass' => null,
-               'code' => 400];
+               'cod' => 400];
 
         // generate ID
         if($role == 3){
@@ -121,7 +166,7 @@ class userModel extends DB
             $rs = ['register'=>true,
                    'id' => $id,
                    'pass' => $code,
-                   'code' => 200];
+                   'cod' => 200];
         }
 
         $stmt->close();

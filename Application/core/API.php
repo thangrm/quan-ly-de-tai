@@ -79,6 +79,12 @@
             }
         }    
 
+        /* Functions validate input */
+        function validatesAsInt($number)
+        {
+            $number = filter_var($number, FILTER_VALIDATE_INT);
+            return ($number !== false);
+        }
 
         /* Response API */
         protected function response($data, $status = 200) {
