@@ -1,8 +1,7 @@
 <?php
 class userModel extends DB
 {
-    function getUserByID($id)
-    {
+    function getUserByID($id){
         $char = substr($id,0,2);
         $sql = "SELECT * FROM taikhoan WHERE ma_taikhoan = ? AND hoatdong = 1";
         if($char == 'SV'){
@@ -45,12 +44,10 @@ class userModel extends DB
         }
 
         $stmt->close();
-        $this->conn->close();
         return $user;
     }
 
-    function getListUsers($name, $role, $page, $limit)
-    { 
+    function getListUsers($name, $role, $page, $limit){ 
         $name = "%$name%";
         $offset = ($page - 1) * $limit;
         $sql = "SELECT * FROM taikhoan WHERE hoten like ? AND loaitaikhoan = ? AND hoatdong = 1 LIMIT ?, ?";
@@ -166,6 +163,101 @@ class userModel extends DB
             $rs = ['register'=>true,
                    'id' => $id,
                    'pass' => $code,
+                   'cod' => 200];
+        }
+
+        $stmt->close();
+        $this->conn->close();
+        return $rs;
+    }
+
+    function update($id, $pass, $name, $birthday, $avatar, $email, $phone, $address, $majors, $kh, $ns){
+        $rs = ['update'=>false,
+               'cod' => 400];
+        $char = substr($id,0,2);
+        $user = $this->getUserByID($id);
+        $stmt = null;
+        // check data
+        if($name == null)
+            $name = $user['name'];
+
+        if($birthday == null)
+            $name = $user['birthday'];
+
+        if($avatar == null)
+            $name = $user['avatar'];
+
+        if($email == null)
+            $name = $user['email'];
+
+        if($phone == null)
+            $name = $user['phone'];
+
+        if($address == null)
+            $name = $user['address'];
+
+
+         // update sinhvien or giaovien table
+         if($char == 'SV'){
+            if($majors == null)
+                $majors = $user['majors']['majors_id'];
+
+            if($kh == null)
+                $kh = $user['kh']['kh_id'];
+
+            $sql = "UPDATE `sinhvien` 
+                    SET `ma_nganh`= ?,
+                        `ma_khoahoc`= ?
+                        WHERE ma_sv = ?";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bind_param('sss', $majors, $kh, $id);
+
+        }else if($char == 'GV'){
+            if($ns == null)
+                $ns = $user['ns']['gioihansinhvien'];
+
+            $sql = "UPDATE `giaovien` 
+                    SET `gioihansinhvien`= ? 
+                    WHERE ma_gv = ?";
+                
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bind_param('ss', $ns, $id);
+        }
+        if(!$stmt->execute()){ 
+            return $rs;
+        }
+
+        // update taikhoan table
+        $sql = "UPDATE `taikhoan` 
+                SET `matkhau`= ?,
+                    `hoten`= ?,
+                    `ngaysinh`= ?,
+                    `anh`= ?,
+                    `email`= ?,
+                    `sdt`= ?,
+                    `diachi`= ?
+                WHERE ma_taikhoan = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param('ssssssss', $pass, $name, $birthday, $avatar, $email, $phone, $address, $id);
+        if($stmt->execute()){ 
+            $rs = ['update'=>true,
+                   'cod' => 200];
+        }
+       
+        
+        $stmt->close();
+        $this->conn->close();
+        return $rs;
+    }
+
+    function remove($id){
+        $rs = ['delete'=>false,
+               'cod' => 400];
+        $sql = "UPDATE `taikhoan` SET `hoatdong`= 0 WHERE ma_taikhoan = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param('s', $id);
+        if($stmt->execute()){
+            $rs = ['delete'=>true,
                    'cod' => 200];
         }
 
