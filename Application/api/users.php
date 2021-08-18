@@ -233,7 +233,7 @@
                         }else{
                             $ext = pathinfo($_FILES['avatar']['name'], PATHINFO_EXTENSION);
                             $nameFile = $id.'.'.$ext;
-                            if(move_uploaded_file($_FILES['avatar']['tmp_name'], getPathStorage('avatar/'.$nameFile))){
+                            if(move_uploaded_file($_FILES['avatar']['tmp_name'], getRealPathStorage('avatar/'.$nameFile))){
                                 $avatar = $nameFile;
                             }
                             

@@ -37,8 +37,14 @@
         return getBaseUrl().'public/images/'.$nameFile;
     }
 
-    //Hàm lấy thư mục lưu trữ
+    //Hàm lấy đường dẫn file
     function getPathStorage($nameFile){
-        return $_SERVER['DOCUMENT_ROOT'].'/QuanLyDeTai/storage/'.$nameFile;
+        return getBaseUrl().'storage/'.$nameFile;
+    }
+
+    //Hàm lấy đường dẫn tuyết đối thư mục storage trên server
+    function getRealPathStorage($nameFile){
+        $folder = $_SERVER['DOCUMENT_ROOT'].dirname($_SERVER['PHP_SELF']);
+        return $folder.'/storage/'.$nameFile;
     }
 ?>

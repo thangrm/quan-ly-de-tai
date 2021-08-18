@@ -173,9 +173,15 @@ class userModel extends DB
 
     function update($id, $pass, $name, $birthday, $avatar, $email, $phone, $address, $majors, $kh, $ns){
         $rs = ['update'=>false,
+               'message'=>'',
                'cod' => 400];
         $char = substr($id,0,2);
         $user = $this->getUserByID($id);
+        if($user == null){
+            $rs['message'] = 'Mã người dùng không tồn tại';
+            return $rs;
+        }
+        
         $stmt = null;
         // check data
         if($name == null)
@@ -241,6 +247,7 @@ class userModel extends DB
         $stmt->bind_param('ssssssss', $pass, $name, $birthday, $avatar, $email, $phone, $address, $id);
         if($stmt->execute()){ 
             $rs = ['update'=>true,
+                   'message'=>'',
                    'cod' => 200];
         }
        
@@ -252,13 +259,21 @@ class userModel extends DB
 
     function remove($id){
         $rs = ['delete'=>false,
+               'message' => 'Bad Request',
                'cod' => 400];
         $sql = "UPDATE `taikhoan` SET `hoatdong`= 0 WHERE ma_taikhoan = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param('s', $id);
         if($stmt->execute()){
-            $rs = ['delete'=>true,
-                   'cod' => 200];
+            if($stmt->affected_rows < 1){
+                $rs = ['delete'=>false,
+                       'message' => 'Mã người dùng không tồn tại',
+                       'cod' => 200];
+            }else{
+                $rs = ['delete'=>true,
+                       'message' => '',
+                       'cod' => 200];
+            }
         }
 
         $stmt->close();
