@@ -177,7 +177,7 @@
                     $model = $this->model('groupModel');
                     $group = $model->getGroupByID($g_id);
                     if($group == null){
-                        $rs = ['update'=>false,
+                        $rs = ['delete'=>false,
                                'message' => 'Mã nhóm không tồn tại',
                                'cod' => 400];
                         echo $this->response($rs,400);
@@ -199,6 +199,102 @@
 
             }else{
                 echo $this->responseStatus(405); 
+            }
+        }
+
+        /*Member*/
+        function member($g_id){
+            // validate input
+            if($g_id == null){
+                echo $this->responseStatus(400); 
+                return;
+            }
+
+            $uid = null;
+            if(isset($_SESSION['login']['id'])){
+                $uid = $_SESSION['login']['id'];
+            }
+
+            $model = $this->model('groupModel');
+            $group = $model->getGroupByID($g_id);
+            if($group == null){
+                echo $this->responseStatus(400,'Mã nhóm không tồn tại');
+                return;
+            }else if($group['gv_id'] != $uid){
+                echo $this->responseStatus(401);
+                return;
+            }
+
+            $checkRole = $this->checkAllowedRole([$this->ROLE_GIAOVIEN]);
+            if($checkRole){
+                /*          */
+                /*get member*/
+                /*          */
+                if($this->method == 'GET'){
+                    // call model
+                    $group = $model->getGroupByID($g_id);
+                    if($group == null){
+                        echo $this->responseStatus(400,'Mã nhóm không tồn tại');
+                        return;
+                    }else if($group['gv_id'] != $uid){
+                        echo $this->responseStatus(401);
+                        return;
+                    }
+
+                    $rs = $model->getMember($g_id);
+                    echo $this->response($rs);
+    
+                /*          */
+                /*add member*/
+                /*          */
+                }else if($this->method == 'POST'){
+                    $sv_id = $this->getValueMethodPost('sv_id',null);
+                    if($sv_id == null){
+                        echo $this->responseStatus(400); 
+                        return;
+                    }
+
+                    // call model
+                    $group = $model->getGroupByID($g_id);
+                    if($group == null){
+                        echo $this->responseStatus(400,'Mã nhóm không tồn tại');
+                        return;
+                    }else if($group['gv_id'] != $uid){
+                        echo $this->responseStatus(401);
+                        return;
+                    }
+
+                    $rs = $model->addMember($g_id, $sv_id);
+                    if($rs)
+                        echo $this->response(['success'=> true,
+                                                'cod' => 200]);
+                    else
+                        echo $this->responseStatus(400);
+                        
+                /*             */
+                /*remove member*/
+                /*             */
+                }else if($this->method == 'DELETE'){
+                    // validate input
+                    $sv_id = $this->getValueMethodGet('sv_id',null);
+                    if($sv_id == null){
+                        echo $this->responseStatus(400); 
+                        return;
+                    }
+                    
+                    // call model
+                    $rs = $model->removeMember($g_id, $sv_id);
+                    if($rs)
+                        echo $this->response(['success'=> true,
+                                                'cod' => 200]);
+                    else
+                        echo $this->responseStatus(400);
+                }
+                else{
+                    echo $this->responseStatus(405); 
+                }
+            }else{
+              echo $this->responseStatus(401);
             }
         }
 

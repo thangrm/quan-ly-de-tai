@@ -40,11 +40,14 @@ class thesisModel extends DB
         $stmt = null;
 
         if($uid == null){
-            $sql = "SELECT detai.*, sv.hoten as tensv, gv.hoten as tengv, tl.tentheloai as tentheloai
+            $sql = "SELECT detai.*, gv.hoten as tengv, sv.*, nganh.*, khoahoc.*, tl.tentheloai as tentheloai
                     FROM detai 
                     INNER JOIN taikhoan as sv on detai.ma_sv = sv.ma_taikhoan 
                     INNER JOIN taikhoan as gv on detai.ma_gv = gv.ma_taikhoan 
                     INNER JOIN theloai as tl on detai.ma_theloai = tl.ma_theloai
+                    INNER JOIN sinhvien on sinhvien.ma_sv = detai.ma_sv
+                    INNER JOIN nganh on nganh.ma_nganh = sinhvien.ma_nganh
+                    INNER JOIN khoahoc on khoahoc.ma_khoahoc = sinhvien.ma_khoahoc
                     WHERE tendetai like ? AND pheduyet = ? AND hoanthanh = ? LIMIT ?, ?";
 
             $stmt = $this->conn->prepare($sql);
@@ -61,12 +64,15 @@ class thesisModel extends DB
                 return 400;
             }
 
-            $sql = "SELECT detai.*, sv.hoten as tensv, gv.hoten as tengv, tl.tentheloai as tentheloai
+            $sql = "SELECT detai.*, gv.hoten as tengv, sv.*, nganh.*, khoahoc.*, tl.tentheloai as tentheloai
                     FROM detai 
                     INNER JOIN taikhoan as sv on detai.ma_sv = sv.ma_taikhoan 
                     INNER JOIN taikhoan as gv on detai.ma_gv = gv.ma_taikhoan 
                     INNER JOIN theloai as tl on detai.ma_theloai = tl.ma_theloai
-                    WHERE  $column_uid = ? AND tendetai like ? AND pheduyet = ? AND hoanthanh = ? LIMIT ?, ?";
+                    INNER JOIN sinhvien on sinhvien.ma_sv = detai.ma_sv
+                    INNER JOIN nganh on nganh.ma_nganh = sinhvien.ma_nganh
+                    INNER JOIN khoahoc on khoahoc.ma_khoahoc = sinhvien.ma_khoahoc
+                    WHERE  detai.$column_uid = ? AND tendetai like ? AND pheduyet = ? AND hoanthanh = ? LIMIT ?, ?";
 
             $stmt = $this->conn->prepare($sql);
             $stmt->bind_param('ssiiii', $uid, $titile, $approve, $complete, $offset, $limit);
@@ -78,11 +84,28 @@ class thesisModel extends DB
         $listThesis = [];
         while ($row = mysqli_fetch_assoc($result)) {
             $thesis = array();
+            $user = array();
+            //get infor user
+            $user['sv_id'] = $row['ma_taikhoan'];
+            $user['name'] = $row['hoten'];
+            $user['active'] = $row['hoatdong'];
+            $user['role'] = $row['loaitaikhoan'];
+            $user['birthday'] = $row['ngaysinh'];
+            $user['avatar'] = $row['anh'];
+            $user['email'] = $row['email'];
+            $user['phone'] = $row['sdt'];
+            $user['address'] = $row['diachi'];  
+            $user['majors'] = ['majors_id'=>$row['ma_nganh'],
+                                'majors_name'=>$row['tennganh']];
+            $user['kh'] = ['kh_id'=>$row['ma_khoahoc'],
+                            'kh_name'=>$row['tenkhoahoc']];
+
+
+            // get infor thesis
             $thesis['thesis_id'] = $row['ma_detai'];
             $thesis['cat'] = ['cat_id'=>$row['ma_theloai'],
                               'name'=>$row['tentheloai']];
-            $thesis['sv'] = ['sv_id'=>$row['ma_sv'],
-                             'name'=>$row['tensv']];
+            $thesis['sv'] = $user;
             $thesis['gv'] = ['gv_id'=>$row['ma_gv'],
                              'name'=>$row['tengv']];
             $thesis['title'] = $row['tendetai'];

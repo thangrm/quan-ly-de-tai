@@ -1,6 +1,7 @@
 <?php
 class groupModel extends DB
 {
+    /* group */
     function getGroupByID($id){
 
         $sql = "SELECT * FROM nhom
@@ -119,6 +120,78 @@ class groupModel extends DB
             $rs = ['delete'=>true,
                    'message' => '',
                    'cod' => 200];
+        }
+
+        $stmt->close();
+        $this->conn->close();
+        return $rs;
+    }
+
+
+    /* member */
+    function getMember($g_id){
+        $sql = "SELECT taikhoan.*, sinhvien.*, tennganh, tenkhoahoc FROM sinhvien 
+                INNER JOIN taikhoan on taikhoan.ma_taikhoan = sinhvien.ma_sv
+                INNER JOIN nganh on nganh.ma_nganh = sinhvien.ma_nganh
+                INNER JOIN khoahoc on khoahoc.ma_khoahoc = sinhvien.ma_khoahoc
+                INNER JOIN chitietnhom on chitietnhom.ma_sv = sinhvien.ma_sv
+                WHERE ma_nhom = ? AND hoatdong = 1";
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param('s', $g_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $listUser = [];
+        while ($row = mysqli_fetch_assoc($result)) {
+            $user = array();
+            $user['id'] = $row['ma_taikhoan'];
+            $user['name'] = $row['hoten'];
+            $user['active'] = $row['hoatdong'];
+            $user['role'] = $row['loaitaikhoan'];
+            $user['birthday'] = $row['ngaysinh'];
+            $user['avatar'] = $row['anh'];
+            $user['email'] = $row['email'];
+            $user['phone'] = $row['sdt'];
+            $user['address'] = $row['diachi'];  
+            $user['majors'] = ['majors_id'=>$row['ma_nganh'],
+                                'majors_name'=>$row['tennganh']];
+
+            $user['kh'] = ['kh_id'=>$row['ma_khoahoc'],
+                            'kh_name'=>$row['tenkhoahoc']]; 
+            array_push($listUser, $user);                
+        }
+
+        $stmt->close();
+        return $listUser;
+    }
+    function addMember($g_id, $sv_id){
+        $stmt = null;
+        $sql = "INSERT INTO chitietnhom(ma_nhom, ma_sv)
+                VALUES (?,?)";
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param('ss', $g_id, $sv_id);
+        $rs = true;
+        if(!$stmt->execute()){ 
+            $rs = false;
+        }
+
+        $stmt->close();
+        $this->conn->close();
+        return $rs;
+    }
+
+    function removeMember($g_id, $sv_id){
+        $stmt = null;
+        $sql = "DELETE FROM chitietnhom
+                WHERE ma_nhom = ? AND ma_sv = ?";
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param('ss', $g_id, $sv_id);
+        $rs = true;
+        if(!$stmt->execute()){ 
+            $rs = false;
         }
 
         $stmt->close();
