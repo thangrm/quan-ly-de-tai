@@ -54,10 +54,15 @@ INSERT INTO `baitap` (`ma_baitap`, `ma_nhom`, `tieude`, `noidung`, `ngaydang`, `
 -- Bẫy `baitap`
 --
 DELIMITER $$
-CREATE TRIGGER `tg_baitap_chitietbaitap` AFTER INSERT ON `baitap` FOR EACH ROW INSERT INTO `chitietbaitap`(`ma_baitap`,`ma_sv`) 
+CREATE TRIGGER `tg_after_insert_baitap` AFTER INSERT ON `baitap` FOR EACH ROW INSERT INTO `chitietbaitap`(`ma_baitap`,`ma_sv`) 
 SELECT NEW.ma_baitap, ma_sv 
 from chitietnhom 
 WHERE ma_nhom = NEW.ma_nhom
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `tg_before_delete_baitap` BEFORE DELETE ON `baitap` FOR EACH ROW DELETE FROM chitietbaitap
+WHERE ma_baitap = OLD.ma_baitap
 $$
 DELIMITER ;
 
@@ -118,10 +123,16 @@ INSERT INTO `chitietnhom` (`ma_nhom`, `ma_sv`) VALUES
 -- Bẫy `chitietnhom`
 --
 DELIMITER $$
-CREATE TRIGGER `tg_chitietnhom_chitietbaitap` AFTER INSERT ON `chitietnhom` FOR EACH ROW INSERT INTO `chitietbaitap`(`ma_baitap`,`ma_sv`) 
+CREATE TRIGGER `tg_after_insert_chitietnhom` AFTER INSERT ON `chitietnhom` FOR EACH ROW INSERT INTO `chitietbaitap`(`ma_baitap`,`ma_sv`) 
 SELECT ma_baitap, NEW.ma_sv 
 from baitap
 WHERE ma_nhom = NEW.ma_nhom
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `tg_before_delete_chitietnhom` BEFORE DELETE ON `chitietnhom` FOR EACH ROW DELETE chitietbaitap FROM chitietbaitap
+INNER JOIN baitap on baitap.ma_baitap = chitietbaitap.ma_baitap 
+WHERE ma_nhom = OLD.ma_nhom and ma_sv = OLD.ma_sv
 $$
 DELIMITER ;
 

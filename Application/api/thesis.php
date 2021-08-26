@@ -230,7 +230,7 @@
             }
         }
 
-        // remove user
+        // remove thesis
         function remove($id){
             if($this->method == 'DELETE'){
                 if($id == null){

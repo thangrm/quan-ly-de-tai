@@ -158,7 +158,7 @@
             }
         }
 
-        // remove user
+        // remove group
         function remove($g_id){
             if($this->method == 'DELETE'){
                 if($g_id == null){

@@ -124,7 +124,7 @@ class thesisModel extends DB
 
         $stmt = null;
 
-        // insert taikhoan table
+        // insert detai table
         $sql = "INSERT INTO detai (ma_theloai, ma_gv, ma_sv, tendetai, mota) 
         VALUES (?, ?, ?, ?, ?)";
 
