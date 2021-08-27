@@ -61,8 +61,14 @@ WHERE ma_nhom = NEW.ma_nhom
 $$
 DELIMITER ;
 DELIMITER $$
-CREATE TRIGGER `tg_before_delete_baitap` BEFORE DELETE ON `baitap` FOR EACH ROW DELETE FROM chitietbaitap
-WHERE ma_baitap = OLD.ma_baitap
+CREATE TRIGGER `tg_before_delete_baitap` BEFORE DELETE ON `baitap` FOR EACH ROW BEGIN
+	DELETE ykien 
+    FROM ykien INNER JOIN chitietbaitap ON ykien.ma_chitietbaitap = chitietbaitap.ma_chitietbaitap 
+    WHERE ma_baitap = OLD.ma_baitap;
+    
+	DELETE FROM chitietbaitap 
+    WHERE ma_baitap = OLD.ma_baitap;
+END
 $$
 DELIMITER ;
 
