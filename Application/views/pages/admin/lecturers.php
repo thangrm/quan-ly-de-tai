@@ -18,12 +18,16 @@
                         <form>
                             <fieldset >
                                 <div class="mb-3">
-                                    <label for="" class="form-label ">Họ và tên</label>
+                                    <label for="" class="form-label required">Họ và tên</label>
                                     <input type="text" id="" class="form-control">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="" class="form-label ">Số lượng SV hướng dẫn</label>
+                                    <label for="" class="form-label required">Số lượng SV hướng dẫn</label>
                                     <input type="text" id="" class="form-control">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="assignment-title" class="form-label pd-20 required">Ngày sinh</label>
+                                    <input type="date" id="start" name="trip-start" value="" min="1965-01-01" max="1995-12-31">
                                 </div>
                                 <div class="mb-3">
                                     <label for="" class="form-label ">Số điện thoại</label>
@@ -34,8 +38,12 @@
                                     <input type="text" id="" class="form-control" placeholder="">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="" class="form-label ">Địa chỉ</label>
+                                    <label for="" class="form-label required">Địa chỉ</label>
                                     <input type="text" id="" class="form-control" placeholder="">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="" class="form-label ">Ảnh</label>
+                                    <input type="file" id="" class="form-control">
                                 </div>
                             </fieldset>
                         </form>
@@ -65,22 +73,26 @@
                 <thead>
                     <tr>
                         <th scope="col">STT</th>
+                        <th scope="col">Mã GV</th>
                         <th scope="col">Họ tên</th>
                         <th scope="col">Số lượng SV hướng dẫn</th>
                         <th scope="col">Số điện thoại</th>
                         <th scope="col">Email</th>
                         <th scope="col">Địa chỉ</th>
+                        <th scope="col">Ảnh</th>
                         <th scope="col" class="w-15">Thao tác</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                    <th scope="row">1</th>
+                        <th scope="row">1</th>
+                        <td>GV001002</td>
                         <td>Trần Phương Nhung</td>
                         <td>20</td>
                         <td>0734566542</td>
                         <td>email@gmail.com</td>
                         <td>Hà Nội</td>
+                        <td class="text-center"><img style="width: 30px;" src="<?php echo getPathImg('user.png'); ?>"></td>
                         <td>
                             <!-- Edit lecturer info -->
                             <button type="button" class="btn btn-secondary thesis-action-btn" data-bs-toggle="modal" data-bs-target="#update-lecturer-info"><i class="far fa-edit pd-4"></i>Sửa</button>
@@ -103,6 +115,10 @@
                                                     <input type="text" id="" class="form-control" value="20">
                                                 </div>
                                                 <div class="mb-3">
+                                                    <label for="assignment-title" class="form-label pd-20">Ngày sinh</label>
+                                                    <input type="date" id="start" name="trip-start" value="" min="1965-01-01" max="1995-12-31">
+                                                </div>
+                                                <div class="mb-3">
                                                     <label for="" class="form-label ">Số điện thoại</label>
                                                     <input type="text" id="" class="form-control" value="0734566542">
                                                 </div>
@@ -111,8 +127,12 @@
                                                     <input type="text" id="" class="form-control" value="email@gmail.com">
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="" class="form-label ">Địa chỉ</label>
+                                                    <label for="" class="form-label">Địa chỉ</label>
                                                     <input type="text" id="" class="form-control" value="Hà Nội">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="" class="form-label ">Ảnh</label>
+                                                    <input type="file" id="" class="form-control">
                                                 </div>
                                             </fieldset>
                                         </form>

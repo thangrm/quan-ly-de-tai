@@ -67,6 +67,7 @@
                                 Thêm nhận xét
                             </label>
                             <textarea class="form-control" id="" rows="3"></textarea>
+                            <button type="button" class="btn btn-secondary mt-3">Gửi</button>
                         </div>
                         
                     </div>

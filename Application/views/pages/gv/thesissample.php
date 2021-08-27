@@ -88,7 +88,7 @@
                                 <div class="modal-dialog modal-xl">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="modalLabel">Sửa đề tài</h5>
+                                            <h5 class="modal-title" id="modalLabel">Sửa đề tài mẫu</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
@@ -100,7 +100,10 @@
                                                     </div>
                                                     <div class="mb-3">
                                                         <label for="thesis-field" class="form-label required">Mảng đề tài</label>
-                                                        <input type="text" id="thesis-field" class="form-control" value="Website">
+                                                        <select id="" class="form-select">
+                                                            <option>Trí tuệ nhân tạo</option>
+                                                            <option>An toàn bảo mật thông tin</option>
+                                                        </select>
                                                     </div>
                                                 </fieldset>
                                             </form>

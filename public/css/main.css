@@ -124,6 +124,17 @@ fieldset {
     font-weight: 400;
 }
 
+.dropdown-wrapper .dropdown-toggle {
+    width: 44px;
+    text-align: center;
+    border-radius: 50%;
+    padding: 8px;
+}
+
+.dropdown-wrapper .dropdown-toggle:hover {
+    background-color: #d9dddf;
+}
+
 .dropdown-toggle::after {
     display: none;
 }
@@ -370,6 +381,14 @@ fieldset {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+}
+
+.group-name i {
+    color: #fff;
+    padding: 0 10px;
+    cursor: pointer;
 }
 
 .group-name h4{
@@ -386,6 +405,7 @@ fieldset {
 
 .assingment{
     display: flex;
+    justify-content: space-between;
     align-items: center;
     border: 1px solid #dadce0;
     border-radius: 10px;

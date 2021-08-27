@@ -11,9 +11,9 @@
                         <input type="text" id="thesis-name" class="form-control" placeholder="Ghi rõ ràng và đầy đủ tên đề tài...">
                     </div>
                     <div class="mb-3">
-                        <label for="lecturer" class="form-label required">Chọn giáo viên hướng dẫn</label>
+                        <label for="lecturer" class="form-label required">Chọn giảng viên hướng dẫn</label>
                         <select id="lecturer" class="form-select">
-                            <option>--Chọn giáo viên hướng dẫn--</option>
+                            <option>--Chọn giảng viên hướng dẫn--</option>
                             <option>Trần Phương Nhung</option>
                             <option>Hà Mạnh Đào</option>
                         </select>
@@ -25,10 +25,6 @@
                             <option>Website</option>
                             <option>An toàn bảo mật thông tin</option>
                         </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="co-worker" class="form-label">Sinh viên cùng thực hiện</label>
-                        <input type="text" id="co-worker" class="form-control">
                     </div>
                     <div class="mb-3">
                         <label for="description" class="form-label required">Mô tả vắn tắt</label>
