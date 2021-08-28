@@ -9,25 +9,25 @@
                 <div class="row mb-3">
                     <label for="" class="col-sm-2 col-form-label required">Mật khẩu cũ</label>
                     <div class="col-sm-6">
-                        <input class="form-control" type="password" id="">
+                        <input class="form-control" type="password" id="oldPass">
                     </div>
                 </div>
                 <div class="row mb-3">
                     <label for="" class="col-sm-2 col-form-label required">Mật khẩu mới</label>
                     <div class="col-sm-6">
-                        <input class="form-control" type="password" id="">
+                        <input class="form-control" type="password" id="newPass">
                     </div>
                 </div>
                 <div class="row mb-3">
                     <label for="" class="col-sm-2 col-form-label required">Nhập lại mật khẩu mới</label>
                     <div class="col-sm-6">
-                        <input class="form-control" type="password" id="">
+                        <input class="form-control" type="password" id="rePass">
                     </div>
                 </div>
                 <div class="row mb-3">
                     <label for="" class="col-sm-2 col-form-label"></label>
                     <div class="col-sm-6">
-                        <button type="button" class="btn btn-primary btn-warning">Xác nhận</button>
+                        <button type="button" onclick="changePass();" class="btn btn-primary btn-warning">Xác nhận</button>
                     </div>
                 </div>
             </form>

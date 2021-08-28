@@ -15,6 +15,11 @@ class loginModel extends DB
                 $user['id'] = $row['ma_taikhoan'];
                 $user['name'] = $row['hoten'];
                 $user['role'] = $row['loaitaikhoan'];
+                $user['birthday'] = $row['ngaysinh'];
+                $user['avatar'] = $row['anh'];
+                $user['email'] = $row['email'];
+                $user['phone'] = $row['sdt'];
+                $user['address'] = $row['diachi'];  
             }  
         }
 

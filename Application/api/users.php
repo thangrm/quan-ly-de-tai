@@ -50,13 +50,17 @@
         function infor(){
             if($this->method == 'GET'){
                 $checkRole = $this->checkAllowedRole($this->LIST_ALL_MEMBER);
-                if($checkRole){          
-                    if(!isset($_GET['id'])){
-                        echo $this->responseStatus(400);
-                        return;
-                    }
+                if($checkRole){ 
+                    $id = $this->getValueMethodGet('id',null);
+                    if($id == null){
+                        if(isset($_SESSION['login']['id'])){
+                            $id = $_SESSION['login']['id'];
+                        }else{
+                            echo $this->responseStatus(400);
+                            return;
+                        }
+                    }         
 
-                    $id = $this->getValueMethodGet('id','');
                     $model = $this->model('userModel');
                     $user = $model->getUserByID($id);
                     echo $this->response($user);
@@ -191,7 +195,6 @@
                         }
                     }
 
-                    $pass = $this->getValueMethodPost('pass',null);
                     $name = $this->getValueMethodPost('name',null);
                     $birthday = $this->getValueMethodPost('birthday',null);
                     $avatar = null;
@@ -217,9 +220,6 @@
                             }
                         }
                     }
-                    if($pass != null){
-                        $pass = password_hash($pass, PASSWORD_DEFAULT);
-                    }
                         
                     if(!$validate){
                         echo $this->responseStatus(400); 
@@ -242,7 +242,39 @@
                     
                     // call model
                     $model = $this->model('userModel');
-                    $rs = $model->update($id, $pass, $name, $birthday, $avatar, $email, $phone, $address, $majors, $kh, $ns);
+                    $rs = $model->update($id, $name, $birthday, $avatar, $email, $phone, $address, $majors, $kh, $ns);
+                    echo $this->response($rs);
+                }else{
+                    echo $this->responseStatus(401);
+                }
+
+            }else{
+                echo $this->responseStatus(405); 
+            }
+        }
+
+        // change pass user
+        function pass($id){
+            if($this->method == 'POST'){
+                if($id == null){
+                    echo $this->responseStatus(400); 
+                    return;
+                }
+
+                $checkRole = $this->checkAllowedRole($this->LIST_ALL_MEMBER);
+                if($checkRole){
+                    if($this->role != $this->ROLE_ADMIN){
+                        if($id != $_SESSION['login']['id']){
+                            echo $this->responseStatus(401);
+                            return;
+                        }
+                    }
+                    $oldPass = $this->getValueMethodPost('oldPass',null);
+                    $newPass = $this->getValueMethodPost('newPass',null);
+                    
+                    // call model
+                    $model = $this->model('userModel');
+                    $rs = $model->changePass($id, $oldPass, $newPass);
                     echo $this->response($rs);
                 }else{
                     echo $this->responseStatus(401);

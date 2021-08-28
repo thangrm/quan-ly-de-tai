@@ -13,6 +13,9 @@
     <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+    <script src="<?php echo getPathJS('config.js'); ?>"></script>
+    <script src="<?php echo getPathJS('user.js'); ?>"></script>
+    <script src="<?php echo getPathJS('admin.js'); ?>"></script>
     <link rel="stylesheet" type="text/css" href="<?php echo getPathCSS('reset.css'); ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo getPathCSS('main.css'); ?>">
     <?php

@@ -4,7 +4,12 @@
             //model
 
             //view
-            $this->view("login");
+            if($this->role == $this->ROLE_GUEST){
+                $this->view("login");
+            }else{
+                header('Location: '.getUrl('home'));
+            }
+
         }
     }
 ?>

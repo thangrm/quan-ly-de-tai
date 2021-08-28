@@ -326,7 +326,7 @@ CREATE TABLE `taikhoan` (
 
 INSERT INTO `taikhoan` (`ma_taikhoan`, `matkhau`, `loaitaikhoan`, `hoten`, `hoatdong`, `ngaysinh`, `anh`, `email`, `sdt`, `diachi`) VALUES
 ('AD2021000123', '$2y$10$KD1d9FiZbxVv7HtgcD9ALeRov8PwqCj4xwCi.xGi36RvGLHt9OhGK', 1, 'Admin', 1, '2000-11-18', NULL, 'admin@email.com', '099998888', 'Đại học công nghiệp Hà Nội'),
-('GV2021000003', '$2y$10$5swJILON7gpJ5FayU3iJ/OeEAX.qs7e/vdRUxSCoHaZpundvL/hr6', 2, 'Nguyễn Văn Minh', 1, '0000-00-00', NULL, 'minh@email.com', '09xxxxxxxx', 'Hà Nội'),
+('GV2021000003', '$2y$10$5swJILON7gpJ5FayU3iJ/OeEAX.qs7e/vdRUxSCoHaZpundvL/hr6', 2, 'Nguyễn Văn Minh', 1, NULL, NULL, 'minh@email.com', '09xxxxxxxx', 'Hà Nội'),
 ('GV2021080010', '$2y$10$a36SHIau8hk9aqQuvYwtzuIvmXfkQ/Rxfxiu0vOJMHThT.ARq794S', 2, 'Nguyễn Thu Ngân', 1, NULL, NULL, 'ngan@email.com', '0811112222', 'Bắc Từ Liêm, Hà Nội'),
 ('GV2021080011', '$2y$10$a36SHIau8hk9aqQuvYwtzuIvmXfkQ/Rxfxiu0vOJMHThT.ARq794S', 2, 'Doãn Hải Giang', 1, NULL, NULL, 'haigiang@email.com', '0922223333', 'Cầu Giấy, Hà Nội'),
 ('GV2021080012', '$2y$10$wSGaqAdi4xIaUay/5CwXX.8Sm2ZpnnwU.DAVfx54CxnYTVRLUE8S6', 2, 'Nguyễn Văn An', 1, '2000-01-01', NULL, 'a@email.com', '0123456789', 'Hải Dương'),
@@ -334,7 +334,7 @@ INSERT INTO `taikhoan` (`ma_taikhoan`, `matkhau`, `loaitaikhoan`, `hoten`, `hoat
 ('SV2018603659', '$2y$10$a36SHIau8hk9aqQuvYwtzuIvmXfkQ/Rxfxiu0vOJMHThT.ARq794S', 3, 'Nguyễn Phương Thảo', 1, '2000-01-25', NULL, 'nguyenthao@email.com', '0123456789', 'Đông Anh, Hà Nội'),
 ('SV2018604249', '$2y$10$a36SHIau8hk9aqQuvYwtzuIvmXfkQ/Rxfxiu0vOJMHThT.ARq794S', 3, 'An Thị Thanh Thảo', 1, '2000-01-01', NULL, 'anthao@email.com', '0912345678', 'Hải Dương'),
 ('SV2020000123', '$2y$10$wSGaqAdi4xIaUay/5CwXX.8Sm2ZpnnwU.DAVfx54CxnYTVRLUE8S6', 3, 'Nguyễn Thị Bình', 1, '2000-02-02', NULL, 'b@email.com', '0987654321', 'Bắc Ninh'),
-('SV2021200000', '$2y$10$WFvPePMMqVAwYbsw7ypR5eMtwbwc0Utwh.fpYzTyPPA/j1OviPy3G', 3, 'Nguyễn Văn Minh', 1, '0000-00-00', NULL, 'minh@email.com', '09xxxxxxxx', 'Hà Nội');
+('SV2021200000', '$2y$10$WFvPePMMqVAwYbsw7ypR5eMtwbwc0Utwh.fpYzTyPPA/j1OviPy3G', 3, 'Nguyễn Văn Toàn', 1, NULL, NULL, 'toan@email.com', '09xxxxxxxx', 'Hà Nội');
 
 -- --------------------------------------------------------
 

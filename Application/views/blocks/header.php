@@ -8,14 +8,14 @@
         </div>
         <div class="header-account dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
             <div class="header-account__avatar">
-                <img src="<?php echo getPathImg('avatar.jpg'); ?>" alt="">
+                <img src="<?php echo getPathImg('user.png'); ?>" id="avatarUser" alt="">
             </div>
             <div class="header-account__name">
-                <p>Nguyễn Phương Thảo</p>
+                <p id="nameUser"></p>
             </div>
         </div>
         <ul class="dropdown-menu">
-            <li><a href="" class="dropdown-item">
+            <li><a href="<?php echo getUrl('logout'); ?>" class="dropdown-item">
                 <i class="fas fa-sign-out-alt"></i>
                 Logout
             </a></li>

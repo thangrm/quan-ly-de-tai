@@ -1,10 +1,10 @@
 <?php 
-// $css = ['header.css','home.css','footer.css'];  //add file css
-// $javascript = ['home.js']; // add file javascript
+$javascript = ['user.js','sv.js']; // add file javascript
 
-// $this->view('blocks/headHTML',['css'=>$css,
-//                                'js'=>$javascript
-//                               ]);
+$this->view('blocks/headHTML',['css'=>$css,
+                               'js'=>$javascript
+                              ]);
+
 $this->view('blocks/headHTML');
 ?>                            
 <body>

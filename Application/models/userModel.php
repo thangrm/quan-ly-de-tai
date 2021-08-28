@@ -171,11 +171,12 @@ class userModel extends DB
         return $rs;
     }
 
-    function update($id, $pass, $name, $birthday, $avatar, $email, $phone, $address, $majors, $kh, $ns){
+    function update($id, $name, $birthday, $avatar, $email, $phone, $address, $majors, $kh, $ns){
         $rs = ['update'=>false,
                'message'=>'',
                'cod' => 400];
         $char = substr($id,0,2);
+        
         $user = $this->getUserByID($id);
         if($user == null){
             $rs['message'] = 'Mã người dùng không tồn tại';
@@ -188,19 +189,19 @@ class userModel extends DB
             $name = $user['name'];
 
         if($birthday == null)
-            $name = $user['birthday'];
+            $birthday = $user['birthday'];
 
         if($avatar == null)
-            $name = $user['avatar'];
+            $avatar = $user['avatar'];
 
         if($email == null)
-            $name = $user['email'];
+            $email = $user['email'];
 
         if($phone == null)
-            $name = $user['phone'];
+            $phone = $user['phone'];
 
         if($address == null)
-            $name = $user['address'];
+            $address = $user['address'];
 
 
          // update sinhvien or giaovien table
@@ -220,7 +221,7 @@ class userModel extends DB
 
         }else if($char == 'GV'){
             if($ns == null)
-                $ns = $user['ns']['gioihansinhvien'];
+                $ns = $user['ns'];
 
             $sql = "UPDATE `giaovien` 
                     SET `gioihansinhvien`= ? 
@@ -235,23 +236,61 @@ class userModel extends DB
 
         // update taikhoan table
         $sql = "UPDATE `taikhoan` 
-                SET `matkhau`= ?,
-                    `hoten`= ?,
-                    `ngaysinh`= ?,
-                    `anh`= ?,
-                    `email`= ?,
-                    `sdt`= ?,
-                    `diachi`= ?
-                WHERE ma_taikhoan = ?";
+        SET `hoten`= ?,
+            `ngaysinh`= ?,
+            `anh`= ?,
+            `email`= ?,
+            `sdt`= ?,
+            `diachi`= ?
+        WHERE ma_taikhoan = ?";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param('ssssssss', $pass, $name, $birthday, $avatar, $email, $phone, $address, $id);
+        $stmt->bind_param('sssssss', $name, $birthday, $avatar, $email, $phone, $address, $id);
+
         if($stmt->execute()){ 
             $rs = ['update'=>true,
                    'message'=>'',
                    'cod' => 200];
         }
-       
-        
+         
+        $stmt->close();
+        $this->conn->close();
+        return $rs;
+    }
+
+    function changePass($id, $oldPass, $newPass){
+        $sql = "SELECT * FROM taikhoan WHERE ma_taikhoan = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("s", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $user = array();
+        while ($row = mysqli_fetch_assoc($result)) {
+            if(!password_verify($oldPass, $row['matkhau'])){
+                $rs = ['update'=>false,
+                       'message'=>'Mật khẩu cũ không chính xác',
+                       'cod' => 200];
+                return $rs;
+            }  
+        }
+
+        $newPass = password_hash($newPass, PASSWORD_DEFAULT);
+        $sql = "UPDATE `taikhoan` 
+                SET `matkhau`= ?
+                WHERE ma_taikhoan = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param('ss', $newPass, $id);
+
+        if($stmt->execute()){ 
+            $rs = ['update'=>true,
+                   'message'=>'',
+                   'cod' => 200];
+        }else{
+            $rs = ['update'=>false,
+                   'message'=>'',
+                   'cod' => 200];
+        }
+         
         $stmt->close();
         $this->conn->close();
         return $rs;
