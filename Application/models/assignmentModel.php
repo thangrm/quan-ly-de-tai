@@ -40,6 +40,7 @@ class assignmentModel extends DB
             $listDetail = [];
             while ($row = mysqli_fetch_assoc($result)) {
                 $detail = array();
+                $detail['d_id'] = $row['ma_chitietbaitap'];
                 $detail['sv_id'] = $row['ma_sv'];
                 $detail['name'] = $row['hoten'];
                 $detail['file'] = $row['file'];
@@ -211,7 +212,7 @@ class assignmentModel extends DB
 
     /* ykien table */
     function getOpinion($id){
-        $sql = "SELECT ykien.*, hoten
+        $sql = "SELECT ykien.*, hoten, anh
                 FROM ykien 
                 INNER JOIN taikhoan on taikhoan.ma_taikhoan = ykien.ma_taikhoan
                 WHERE ma_chitietbaitap = ?
@@ -228,6 +229,7 @@ class assignmentModel extends DB
             $opinion['detail_id'] = $row['ma_chitietbaitap'];
             $opinion['user_id'] = $row['ma_taikhoan'];
             $opinion['name'] = $row['hoten'];
+            $opinion['avatar'] = $row['anh'];
             $opinion['content'] = $row['noidung_ykien'];
             $opinion['time'] = $row['thoigian_ykien'];
             array_push($listOpinion, $opinion);

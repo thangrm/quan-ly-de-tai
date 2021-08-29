@@ -36,6 +36,7 @@
                 // check role 
                 if($checkRole){
                     $uid =  $this->getValueMethodGet('uid', null);
+                    $cat_id =  $this->getValueMethodGet('cat_id', -1);
                     $title =  $this->getValueMethodGet('title', '');
                     $page = $this->getValueMethodGet('page', 1);
                     $limit = $this->getValueMethodGet('limit', 25);
@@ -56,7 +57,7 @@
 
                     // call model
                     $model = $this->model('exampleModel');
-                    $listExample = $model->getListExample($uid, $title, $page, $limit);
+                    $listExample = $model->getListExample($uid, $cat_id, $title, $page, $limit);
                     if($listExample == 400){
                         echo $this->responseStatus(400); 
                     }else{

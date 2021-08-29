@@ -67,13 +67,7 @@
                 <i class="fas fa-users"></i>
                 Nhóm hướng dẫn
             </a>
-            <ul class="sidebar-child">
-                <li class="sidebar-child__item">
-                    <a href="<?php echo getBaseUrl()."sv/group/group";?>" class="sidebar-child__link <?php  if($currentPage == getBaseUrl()."sv/group/group") echo "active "?>">
-                        <i class="fas fa-chevron-right"></i>
-                        N01-KTPM01K13
-                    </a>
-                </li>
+            <ul class="sidebar-child" id="listGroup">
             </ul>
         </li>
     </ul>

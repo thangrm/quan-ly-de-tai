@@ -4,10 +4,17 @@
             //model
 
             //view
+            if($this->role != $this->ROLE_SINHVIEN){
+                header('Location: '.getUrl('home'));
+            }
             $vi = $this->view("layout-sv", ["page"=>"home"]);
         }
 
         function account($param){
+            if($this->role != $this->ROLE_SINHVIEN){
+                header('Location: '.getUrl('home'));
+            }
+
             if($param == "") {
                 $this->view("layout-sv", ["page"=>"home"]);
             }
@@ -22,6 +29,10 @@
         }
 
         function thesis($param){
+            if($this->role != $this->ROLE_SINHVIEN){
+                header('Location: '.getUrl('home'));
+            }
+
             if($param == "") {
                 $this->view("layout-sv", ["page"=>"home"]);
             }
@@ -44,7 +55,11 @@
         }
 
         function group($param){
-            if($param == "group") {
+            if($this->role != $this->ROLE_SINHVIEN){
+                header('Location: '.getUrl('home'));
+            }
+            
+            if($param == "show") {
                 $this->view("layout-sv", ["page"=>"group"]);
             }
 

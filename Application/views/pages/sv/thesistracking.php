@@ -4,7 +4,7 @@
             <h1 class="display-4">Đề tài của tôi</h1>
         </div>
         <div class="main-content">
-            <table class="table table-striped table-bordered">
+            <table id="tbThesisTracking" class="table table-striped table-bordered">
                 <thead>
                     <tr>
                         <th scope="col">STT</th>
@@ -12,19 +12,19 @@
                         <th scope="col">Mảng đề tài</th>
                         <th scope="col">GV hướng dẫn</th>
                         <th scope="col">Trạng thái</th>
-                        <th></th>
+                        <th id="thBtnThesis"></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <th scope="row">1</th>
-                        <td>Xây dựng website bán hàng sử dụng ngôn ngữ PHP</td>
-                        <td>Website</td>
-                        <td>Lorem ipsum dolor</td>
+                        <td id="titleThesis"></td>
+                        <td id="categoryThesis"></td>
+                        <td id="lecturerThesis"></td>
                         <td>
-                            <span class="status waiting">Chờ duyệt</span>
+                            <span id="approveThesis" class="status"></span>
                         </td>
-                        <td>
+                        <td id="btnThesis">
                             <button type="button" class="btn btn-warning thesis-action-btn" data-bs-toggle="modal" data-bs-target="#update-thesis" data-bs-whatever="">Sửa</button>
                             <div class="modal fade" id="update-thesis" tabindex="-1" aria-labelledby="update-thesis-Label" aria-hidden="true">
                                 <div class="modal-dialog modal-xl">
@@ -38,32 +38,30 @@
                                                 <fieldset >
                                                     <div class="mb-3">
                                                         <label for="thesis-name" class="form-label required">Tên đề tài</label>
-                                                        <input type="text" id="thesis-name" class="form-control" value="Xây dựng website bán hàng sử dụng ngôn ngữ PHP">
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label for="" class="form-label required">Mảng đề tài</label>
-                                                        <select id="" class="form-select">
-                                                            <option>Website</option>
-                                                            <option>An toàn bảo mật thông tin</option>
-                                                        </select>
+                                                        <input type="text" id="fixTitleThesis" class="form-control" value="a">
                                                     </div>
                                                     <div class="mb-3">
                                                         <label for="lecturer" class="form-label required">Giáo viên hướng dẫn</label>
-                                                        <select id="lecturer" class="form-select">
-                                                            <option>Trần Phương Nhung</option>
-                                                            <option>Hà Mạnh Đào</option>
+                                                        <select id="selectListLecturer" class="form-select">
+                                                            <option value="0" selected>--Chọn giảng viên hướng dẫn--</option>
                                                         </select>
                                                     </div>
                                                     <div class="mb-3">
-                                                        <label for="thesis-description" class="form-label">Mô tả vắn tắt</label>
-                                                        <textarea class="form-control" id="thesis-description" rows="3">Website bán đồ ăn nhanh bao gồm 1 số chức năng chính: Xem sản phẩm, Mua hàng, Thêm, Sửa, Xóa...</textarea>
+                                                        <label for="" class="form-label required">Mảng đề tài</label>
+                                                        <select class="form-select"  id="selectListCategory">
+                                                            <option value="0" selected>--Chọn mảng đề tài--</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="thesis-description" class="form-label" >Mô tả vắn tắt</label>
+                                                        <textarea class="form-control" id="fixDesThesis" rows="3"></textarea>
                                                     </div>
                                                 </fieldset>
                                             </form>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary btn-fix " data-bs-dismiss="modal">Đóng</button>
-                                            <button type="button" class="btn btn-primary btn-warning">Lưu</button>
+                                            <button type="button" onclick="updateTrackingThesis();" class="btn btn-primary btn-warning">Lưu</button>
                                         </div>
                                     </div>
                                 </div>
@@ -84,7 +82,7 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary btn-fix " data-bs-dismiss="modal">Đóng</button>
-                                            <button type="button" class="btn btn-primary btn-warning">Xóa</button>
+                                            <button type="button" onclick="removeTrackingThesis();" class="btn btn-primary btn-warning" data-bs-dismiss="modal">Xóa</button>
                                         </div>
                                     </div>
                                 </div>

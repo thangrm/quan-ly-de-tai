@@ -29,7 +29,7 @@ class exampleModel extends DB
         return $example;
     }
 
-    function getListExample($uid, $titile, $page, $limit){ 
+    function getListExample($uid, $cat_id, $titile, $page, $limit){ 
         $titile = "%$titile%";
         $offset = ($page - 1) * $limit;
         $stmt = null;
@@ -39,19 +39,19 @@ class exampleModel extends DB
                     FROM detaimau 
                     INNER JOIN taikhoan as gv on detaimau.ma_gv = gv.ma_taikhoan 
                     INNER JOIN theloai as tl on detaimau.ma_theloai = tl.ma_theloai
-                    WHERE tendetai like ? LIMIT ?, ?";
+                    WHERE tendetai like ? AND (tl.ma_theloai =  ? or ? = -1) LIMIT ?, ?";
 
             $stmt = $this->conn->prepare($sql);
-            $stmt->bind_param('sii', $titile, $offset, $limit);
+            $stmt->bind_param('siiii', $titile, $cat_id, $cat_id, $offset, $limit);
         }else{
             $sql = "SELECT detaimau.*, gv.hoten as tengv, tl.tentheloai as tentheloai
             FROM detaimau 
             INNER JOIN taikhoan as gv on detaimau.ma_gv = gv.ma_taikhoan 
             INNER JOIN theloai as tl on detaimau.ma_theloai = tl.ma_theloai
-            WHERE ma_gv = ? and tendetai like ? LIMIT ?, ?";
+            WHERE ma_gv = ? and tendetai like ? AND (tl.ma_theloai =  ? or ? = -1) LIMIT ?, ?";
 
             $stmt = $this->conn->prepare($sql);
-            $stmt->bind_param('ssii', $uid, $titile, $offset, $limit);
+            $stmt->bind_param('ssiiii', $uid, $titile, $cat_id, $cat_id, $offset, $limit);
         }
 
         $stmt->execute();

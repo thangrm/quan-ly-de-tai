@@ -8,10 +8,10 @@
                 <img src="<?php echo getPathImg('banner01.jpg'); ?>" alt="">
             </div>
             <div class="group-name">
-                <h4>N01-KTPM01K13</h4>
+                <h4 id="groupName"></h4>
             </div>
         </div>
-        <div class="group-content">
+        <div class="group-content" id="groupContent">
             <a href="<?php echo getBaseUrl()."sv/group/viewassignment";?>" class="assingment-link">
                 <div class="assingment">
                     <div class="assingment-icon">

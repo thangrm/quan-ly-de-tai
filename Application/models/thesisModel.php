@@ -34,7 +34,7 @@ class thesisModel extends DB
         return $thesis;
     }
 
-    function getThesisByUser($uid, $titile, $approve, $complete, $page, $limit){ 
+    function getThesisByUser($uid, $cat_id, $titile, $page, $limit){ 
         $titile = "%$titile%";
         $offset = ($page - 1) * $limit;
         $stmt = null;
@@ -48,10 +48,10 @@ class thesisModel extends DB
                     INNER JOIN sinhvien on sinhvien.ma_sv = detai.ma_sv
                     INNER JOIN nganh on nganh.ma_nganh = sinhvien.ma_nganh
                     INNER JOIN khoahoc on khoahoc.ma_khoahoc = sinhvien.ma_khoahoc
-                    WHERE tendetai like ? AND pheduyet = ? AND hoanthanh = ? LIMIT ?, ?";
-
+                    WHERE tendetai like ? AND (tl.ma_theloai =  ? or ? = -1) LIMIT ?, ?";
+    
             $stmt = $this->conn->prepare($sql);
-            $stmt->bind_param('siiii', $titile, $approve, $complete, $offset, $limit);
+            $stmt->bind_param('siiii', $titile, $cat_id, $cat_id, $offset, $limit);
         }else{
             $char = substr($uid,0,2);
             $column_uid = "";
@@ -72,10 +72,10 @@ class thesisModel extends DB
                     INNER JOIN sinhvien on sinhvien.ma_sv = detai.ma_sv
                     INNER JOIN nganh on nganh.ma_nganh = sinhvien.ma_nganh
                     INNER JOIN khoahoc on khoahoc.ma_khoahoc = sinhvien.ma_khoahoc
-                    WHERE  detai.$column_uid = ? AND tendetai like ? AND pheduyet = ? AND hoanthanh = ? LIMIT ?, ?";
+                    WHERE  detai.$column_uid = ? AND tendetai like ? AND (tl.ma_theloai =  ? or ? = -1) LIMIT ?, ?";
 
             $stmt = $this->conn->prepare($sql);
-            $stmt->bind_param('ssiiii', $uid, $titile, $approve, $complete, $offset, $limit);
+            $stmt->bind_param('ssiiii', $uid, $titile, $cat_id, $cat_id, $offset, $limit);
         }
 
         $stmt->execute();
@@ -116,12 +116,14 @@ class thesisModel extends DB
         }
         
         $stmt->close();
-        $this->conn->close();
         return $listThesis;
     }
 
     function add($cat_id, $sv_id, $gv_id, $title, $des){
-
+        $thesis = $this->getThesisByUser($sv_id, -1, "",1,25);
+        if(count($thesis) > 0){
+            return false;
+        }
         $stmt = null;
 
         // insert detai table
@@ -140,7 +142,7 @@ class thesisModel extends DB
         return $rs;
     }
 
-    function update($thesis_id, $cat_id, $title, $des, $approve, $complete){
+    function update($thesis_id, $cat_id, $gv_id, $title, $des, $approve, $complete){
         $rs = ['update'=>false,
                'message' => '',
                'cod' => 400];
@@ -148,13 +150,14 @@ class thesisModel extends DB
         // update detai table
         $sql = "UPDATE detai 
                 SET ma_theloai = ?,
+                    ma_gv = ?,
                     tendetai = ?,
                     mota = ?,
                     pheduyet = ?,
                     hoanthanh = ?
                 WHERE ma_detai = ?";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param('isssss', $cat_id, $title, $des, $approve, $complete, $thesis_id);
+        $stmt->bind_param('issssss', $cat_id, $gv_id, $title, $des, $approve, $complete, $thesis_id);
         if($stmt->execute()){ 
             $rs = ['update'=>true,
                    'message' => '',

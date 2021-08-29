@@ -36,9 +36,8 @@
                 // check role 
                 if($checkRole){
                     $uid =  $this->getValueMethodGet('uid', null);
+                    $cat_id =  $this->getValueMethodGet('cat_id', -1);
                     $title =  $this->getValueMethodGet('title', '');
-                    $approve =  $this->getValueMethodGet('approve', 1);
-                    $complete =  $this->getValueMethodGet('complete', 0);
                     $page = $this->getValueMethodGet('page', 1);
                     $limit = $this->getValueMethodGet('limit', 25);
     
@@ -50,24 +49,6 @@
                     if(!$this->validatesAsInt($limit)){
                         $validate = false;
                     }
-
-                    if(!$this->validatesAsInt($complete)){
-                        $validate = false;
-                    }else{
-                        $tmp = (int)$complete;
-                        if($tmp < 0 || $tmp > 1){
-                            $validate = false;
-                        }
-                    }
-
-                    if(!$this->validatesAsInt($approve)){
-                        $validate = false;
-                    }else{
-                        $tmp = (int)$approve;
-                        if($tmp < 0 || $tmp > 1){
-                            $validate = false;
-                        }
-                    }
                     
                     if(!$validate){
                         echo $this->responseStatus(400); 
@@ -76,7 +57,7 @@
 
                     // call model
                     $model = $this->model('thesisModel');
-                    $listThesis = $model->getThesisByUser($uid, $title, $approve, $complete, $page, $limit);
+                    $listThesis = $model->getThesisByUser($uid, $cat_id, $title, $page, $limit);
                     if($listThesis == 400){
                         echo $this->responseStatus(400); 
                     }else{
@@ -95,7 +76,7 @@
         // add new a thesis
         function new(){
             if($this->method == 'POST'){
-                $checkRole = $this->checkAllowedRole($this->LIST_ALL_MEMBER);
+                $checkRole = $this->checkAllowedRole([$this->ROLE_SINHVIEN]);
 
                 if($checkRole){
                     $cat_id = $this->getValueMethodPost('cat_id',null);
@@ -117,7 +98,8 @@
                         echo $this->response(['success'=> true,
                                               'cod' => 200]);
                     else
-                        echo $this->responseStatus(400);
+                    echo $this->response(['success'=> false,
+                                          'cod' => 200]);
                 }else{
                     echo $this->responseStatus(401);
                 }
@@ -138,6 +120,7 @@
                 $checkRole = $this->checkAllowedRole($this->LIST_ALL_MEMBER);
                 if($checkRole){
                     $cat_id = $this->getValueMethodPost('cat_id',null);
+                    $gv_id = $this->getValueMethodPost('gv_id',null);
                     $title = $this->getValueMethodPost('title',null);
                     $des = $this->getValueMethodPost('des',null);
                     $approve = $this->getValueMethodPost('approve',null);
@@ -201,6 +184,10 @@
                     if($cat_id == null){
                         $cat_id = $thesis['cat']['cat_id'];
                     }
+
+                    if($gv_id == null){
+                        $gv_id = $thesis['gv']['gv_id'];
+                    }
             
                     if($title == null){
                         $title = $thesis['title'];
@@ -219,7 +206,7 @@
                     }
 
                     // call model
-                    $rs = $model->update($id, $cat_id, $title, $des, $approve, $complete);
+                    $rs = $model->update($id, $cat_id, $gv_id, $title, $des, $approve, $complete);
                     echo $this->response($rs);
                 }else{
                     echo $this->responseStatus(401);
@@ -238,7 +225,7 @@
                     return;
                 }
 
-                $checkRole = $this->checkAllowedRole([$this->ROLE_ADMIN,$this->ROLE_GIAOVIEN]);
+                $checkRole = $this->checkAllowedRole($this->LIST_ALL_MEMBER);
                 if($checkRole){
                     $model = $this->model('thesisModel');
                     $thesis = $model->getThesisByID($id);

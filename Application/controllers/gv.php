@@ -8,6 +8,10 @@
         }
 
         function account($param){
+            if($this->role != $this->ROLE_GIAOVIEN){
+                header('Location: '.getUrl('home'));
+            }
+
             if($param == "") {
                 $this->view("layout-gv", ["page"=>"home"]);
             }
@@ -22,6 +26,10 @@
         }
 
         function thesis($param){
+            if($this->role != $this->ROLE_GIAOVIEN){
+                header('Location: '.getUrl('home'));
+            }
+
             if($param == "") {
                 $this->view("layout-gv", ["page"=>"home"]);
             }
@@ -40,6 +48,10 @@
         }
 
         function group($param){
+            if($this->role != $this->ROLE_GIAOVIEN){
+                header('Location: '.getUrl('home'));
+            }
+
             if($param == "group") {
                 $this->view("layout-gv", ["page"=>"group"]);
             }

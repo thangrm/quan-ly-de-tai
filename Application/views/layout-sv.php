@@ -1,4 +1,5 @@
 <?php 
+$css = null;
 $javascript = ['user.js','sv.js']; // add file javascript
 
 $this->view('blocks/headHTML',['css'=>$css,

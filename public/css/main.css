@@ -2,6 +2,7 @@
     --header-height: 65px;
     --primary-color: #FCB800;
 }
+
 body {
     font-size: 14px;
     font-family: Roboto, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -155,7 +156,9 @@ fieldset {
     margin: 0 -20px;
 }
 
+
 /* Header */
+
 .header {
     position: fixed;
     top: 0;
@@ -199,7 +202,7 @@ fieldset {
     cursor: pointer;
 }
 
-.header-account__name p{
+.header-account__name p {
     line-height: 40px;
     margin: 0;
     padding-left: 8px;
@@ -219,7 +222,9 @@ fieldset {
     padding-top: var(--header-height);
 }
 
+
 /* Sidebar */
+
 .sidebar {
     background-color: #fbfbfb;
     position: fixed;
@@ -240,13 +245,13 @@ fieldset {
     padding-bottom: 15px;
 }
 
-.copyright p{
+.copyright p {
     margin: 0;
     text-align: center;
     font-size: 13px;
 }
 
-.copyright i{
+.copyright i {
     color: #ed5050;
 }
 
@@ -288,7 +293,6 @@ fieldset {
     padding: 20px;
     padding-left: 25px;
     margin-left: 253px;
-
 }
 
 .content-wrapper {
@@ -303,7 +307,9 @@ fieldset {
     margin-bottom: 20px;
 }
 
+
 /* Login */
+
 .login-page {
     width: 450px;
     background-color: #fff;
@@ -337,7 +343,9 @@ fieldset {
     width: 50%;
 }
 
+
 /* Account */
+
 .account-update .row {
     margin: 0;
     justify-content: center;
@@ -347,7 +355,9 @@ fieldset {
     text-align: right;
 }
 
+
 /* Thesis list */
+
 .status.waiting {
     color: #fbfbfb;
     display: block;
@@ -372,7 +382,9 @@ fieldset {
     padding: 0.8px 0;
 }
 
+
 /* Group */
+
 .group-heading {
     position: relative;
 }
@@ -391,8 +403,7 @@ fieldset {
     cursor: pointer;
 }
 
-.group-name h4{
-    
+.group-name h4 {
     color: #fff;
     padding-left: 20px;
     margin: 0;
@@ -403,9 +414,8 @@ fieldset {
     margin: 20px 0;
 }
 
-.assingment{
+.assingment {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     border: 1px solid #dadce0;
     border-radius: 10px;
@@ -433,7 +443,7 @@ fieldset {
     color: #333;
 }
 
-.assingment-detail span{
+.assingment-detail span {
     font-size: 1.4rem;
     display: -webkit-box;
     -webkit-line-clamp: 1;
@@ -446,7 +456,9 @@ fieldset {
     color: #333;
 }
 
+
 /* View assigment */
+
 .view-assign.assingment {
     border: none;
     pointer-events: none;
@@ -542,7 +554,9 @@ fieldset {
     padding-top: 10px;
 }
 
+
 /* Quản lý đề tài */
+
 .table-btn,
 .thesis-action-btn {
     line-height: 1.2rem;
@@ -550,12 +564,15 @@ fieldset {
     font-size: 0.9rem;
 }
 
-.mark-assignment label{
+.mark-assignment label {
     font-size: 1.2rem;
     font-weight: 500;
 }
 
+
 /* -------------------------------- */
+
+
 /* Admin Page */
 
 .admin-sidebar {
@@ -597,7 +614,7 @@ fieldset {
 }
 
 .admin-sidebar-link {
-    color: rgba(255,255,255,.8);
+    color: rgba(255, 255, 255, .8);
     padding: 8px 15px;
     display: block;
 }
@@ -616,18 +633,18 @@ fieldset {
 
 .admin-sidebar-child__link {
     padding: 6px 6px 6px 40px;
-    color: rgba(255,255,255,.8);
+    color: rgba(255, 255, 255, .8);
     display: block;
 }
 
-.admin-sidebar-child__link i{
+.admin-sidebar-child__link i {
     font-size: 0.6rem;
     position: relative;
     top: -2px;
 }
 
 .admin-sidebar .copyright {
-    color: rgba(255,255,255,.8);
+    color: rgba(255, 255, 255, .8);
     text-align: center;
     width: 100%;
     padding: 15px;
@@ -675,24 +692,33 @@ fieldset {
     padding: 15px 0;
 }
 
+
 /* Custom scrollbar in sidebar */
 
+
 /* width */
+
 .scrollbar::-webkit-scrollbar {
     width: 5px;
 }
-  
-  /* Track */
+
+
+/* Track */
+
 .scrollbar::-webkit-scrollbar-track {
-    background: #f1f1f1; 
+    background: #f1f1f1;
 }
+
 
 /* Handle */
+
 .scrollbar::-webkit-scrollbar-thumb {
-    background: #888; 
+    background: #888;
 }
 
+
 /* Handle on hover */
+
 .scrollbar::-webkit-scrollbar-thumb:hover {
-    background: #666; 
+    background: #666;
 }
