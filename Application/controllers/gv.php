@@ -52,7 +52,7 @@
                 header('Location: '.getUrl('home'));
             }
 
-            if($param == "group") {
+            if($param == "show") {
                 $this->view("layout-gv", ["page"=>"group"]);
             }
 

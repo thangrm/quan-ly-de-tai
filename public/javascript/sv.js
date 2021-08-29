@@ -160,50 +160,6 @@ function setListThesis() {
     });
 }
 
-function setListThesis() {
-    let category = $("#selectListCategory").val();
-    if (category == 0) {
-        category = -1;
-    }
-    let title = $("#searchThesis").val();
-
-    //Lấy thông tin đề tài
-    $.ajax({
-        async: false,
-        url: getAPIUrl("thesis/list"),
-        method: "GET",
-        data: { page: 1, limit: 25, cat_id: category, title: title },
-        success: function(response) {
-            if (typeof response === 'object') {
-                listThesis = response;
-                let i = 0;
-                let html = "";
-                $("#tbThesisList").html(html);
-                response.forEach(function(element) {
-                    i++;
-                    if (element['approve'] == 0) {
-                        approve = '<span class="status waiting">Chờ duyệt</span>';
-                    } else if (element['approve'] == 1) {
-                        approve = '<span class="status approved">Đã duyệt</span>';
-                    }
-                    html += '<tr>';
-                    html += '<th scope="row">' + i + '</th>';
-                    html += '<td>' + element['title'] + '</td>';
-                    html += '<td>' + element['cat']['name'] + '</td>';
-                    html += '<td>' + element['sv']['name'] + '</td>';
-                    html += '<td>' + element['gv']['name'] + '</td>';
-                    html += '<td>';
-                    html += approve;
-                    html += '</td>';
-                    html += '</tr>';
-                });
-                $("#tbThesisList").html(html);
-
-            }
-        }
-    });
-}
-
 function setTrackingThesis() {
     let id = user['id'];
 
@@ -388,7 +344,7 @@ function setListGroup() {
         success: function(response) {
             if (typeof response === 'object') {
                 listGroup = response;
-                html = "";
+                let html = "";
                 response.forEach(function(element) {
                     let groupUrl = 'sv/group/show?gid=' + element['g_id'];
 
@@ -427,7 +383,7 @@ function setListAssignment() {
         success: function(response) {
             if (typeof response === 'object') {
                 listGroup = response;
-                html = "";
+                let html = "";
                 response.forEach(function(element) {
                     let assignmentUrl = 'sv/group/viewassignment?aid=' + element['id'];
 
@@ -551,7 +507,7 @@ function setOpinion() {
         data: null,
         success: function(response) {
             if (typeof response === 'object') {
-                html = "";
+                let html = "";
                 html += '<label for=""  class="form-label">'
                 html += '<i class="far fa-comment-alt"></i>';
                 html += 'Nhận xét';

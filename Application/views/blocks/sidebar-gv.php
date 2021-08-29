@@ -55,7 +55,7 @@
                 <i class="fas fa-users"></i>
                 Nhóm hướng dẫn
             </a>
-            <ul class="sidebar-child">
+            <ul class="sidebar-child" id="listGroup">
                 <li class="sidebar-child__item">
                     <a href="<?php echo getBaseUrl()."gv/group/addgroup";?>" class="sidebar-child__link <?php  if($currentPage == getBaseUrl()."gv/group/addgroup") echo "active "?>">
                         <i class="fas fa-plus-circle"></i>
