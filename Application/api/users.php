@@ -168,7 +168,7 @@
                     if($rs['register'])
                         echo $this->response($rs);
                     else
-                        echo $this->responseStatus($rs['code']);
+                        echo $this->responseStatus($rs['cod']);
                 }else{
                     echo $this->responseStatus(401);
                 }

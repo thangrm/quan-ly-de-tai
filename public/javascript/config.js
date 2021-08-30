@@ -29,8 +29,12 @@ function dateFormat(dateString, time = false, type = "vn") {
     if (dateString == null) {
         return '';
     }
-    let date = new Date(dateString);
 
+    if (dateString == "0000-00-00" || dateString == "0000-00-00 00:00:00") {
+        return '';
+    }
+
+    let date = new Date(dateString);
     let day = date.getDate();
     let month = date.getMonth() + 1;
     let year = date.getFullYear();

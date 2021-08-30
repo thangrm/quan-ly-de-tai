@@ -19,52 +19,47 @@
                             <fieldset >
                                 <div class="mb-3">
                                     <label for="" class="form-label required">Họ và tên</label>
-                                    <input type="text" id="" class="form-control" placeholder="">
+                                    <input type="text" id="nameStudentAdd" class="form-control" placeholder="">
                                 </div>
                                 <div class="mb-3">
                                     <label for="" class="form-label required">Ngành</label>
-                                    <select id="" class="form-select">
-                                        <option>--Chọn ngành--</option>
-                                        <option>Công nghệ thông tin</option>
-                                        <option>Kỹ thuật phần mềm</option>
-                                        <option>Khoa học máy tính</option>
-                                        <option>Hệ thống thông tin</option>
+                                    <select id="selectMajorStudentAdd" class="form-select">
+                                        <option value="1">Công nghệ thông tin</option>
+                                        <option value="2">Kỹ thuật phần mềm</option>
+                                        <option value="3">Khoa học máy tính</option>
+                                        <option value="4">Hệ thống thông tin</option>
                                     </select>
                                 </div>
                                 <div class="mb-3">
                                     <label for="" class="form-label required">Khóa</label>
-                                    <select id="" class="form-select">
-                                        <option>K13</option>
-                                        <option>K14</option>
-                                        <option>K15</option>
+                                    <select id="selectYearStudentAdd" class="form-select">
+                                        <option value="1">K13</option>
+                                        <option value="2">K14</option>
+                                        <option value="3">K15</option>
                                     </select>
                                 </div>
                                 <div class="mb-3">
                                     <label for="assignment-title" class="form-label required pd-20">Ngày sinh</label>
-                                    <input type="date" id="start" name="trip-start" value="" min="2000-01-01" max="2003-12-31">
+                                    <input type="date" id="birthdayStudentAdd" name="trip-start" value="" min="2000-01-01" max="2003-12-31">
                                 </div>
                                 <div class="mb-3">
                                     <label for="" class="form-label ">Số điện thoại</label>
-                                    <input type="text" id="" class="form-control" placeholder="">
+                                    <input type="text" id="phoneStudentAdd" class="form-control" placeholder="">
                                 </div>
                                 <div class="mb-3">
                                     <label for="" class="form-label ">Email</label>
-                                    <input type="text" id="" class="form-control" placeholder="">
+                                    <input type="text" id="emailStudentAdd" class="form-control" placeholder="">
                                 </div>
                                 <div class="mb-3">
                                     <label for="" class="form-label ">Địa chỉ</label>
-                                    <input type="text" id="" class="form-control" placeholder="">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="" class="form-label ">Ảnh</label>
-                                    <input type="file" id="" class="form-control">
+                                    <input type="text" id="addressStudentAdd" class="form-control" placeholder="">
                                 </div>
                             </fieldset>
                         </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                        <button type="button" class="btn btn-info">Thêm</button>
+                        <button type="button" onclick="createStudent();" class="btn btn-info">Thêm</button>
                     </div>
                 </div>
             </div>
@@ -73,9 +68,9 @@
          <!-- Search -->
          <div class="wrapper text-center">
             <div class="input-group rounded d-inline-flex mt-3 w-75">
-                <input type="search" class="form-control rounded" placeholder="Tìm kiếm..." aria-label="Search"
+                <input type="search" id="searchStudent" class="form-control rounded" placeholder="Tìm kiếm..." aria-label="Search"
                     aria-describedby="search-addon" />
-                <button class="input-group-text border-0 search-btn" id="search-addon">
+                <button onclick="setListStudent();" class="input-group-text border-0 search-btn" id="search-addon">
                     <i class="fas fa-search"></i>
                 </button>
             </div>
@@ -99,104 +94,91 @@
                         <th class="col">Thao tác</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>2018001002</td>
-                        <td>Nguyễn Mộng Mơ</td>
-                        <td>Kỹ thuật phầm mềm</td>
-                        <td>13</td>
-                        <td>29/01/2000</td>
-                        <td>mail@gmail.com</td>
-                        <td>012345689</td>
-                        <td>Hà Nội</td>
-                        <td class="text-center"><img style="width: 30px;" src="<?php echo getPathImg('user.png'); ?>"></td>
-                        <td>
-                            <!-- Edit student info -->
-                            <button type="button" class="btn btn-secondary thesis-action-btn" data-bs-toggle="modal" data-bs-target="#update-student-info"><i class="far fa-edit pd-4"></i>Sửa</button>
-                            <div class="modal fade" id="update-student-info" tabindex="-1" aria-labelledby="update-student-info-Label" aria-hidden="true">
-                            <div class="modal-dialog modal-xl mt-0">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="modalLabel">Sửa thông tin sinh viên</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form>
-                                            <fieldset >
-                                                <div class="mb-3">
-                                                    <label for="" class="form-label ">Họ và tên</label>
-                                                    <input type="text" id="" class="form-control" value="Nguyễn Mộng Mơ">
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="" class="form-label ">Ngành</label>
-                                                    <select id="" class="form-select">
-                                                        <option>Kỹ thuật phần mềm</option>
-                                                        <option>Công nghệ thông tin</option>
-                                                        <option>Khoa học máy tính</option>
-                                                        <option>Hệ thống thông tin</option>
-                                                    </select>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="" class="form-label ">Khóa</label>
-                                                    <select id="" class="form-select">
-                                                        <option>K13</option>
-                                                        <option>K14</option>
-                                                        <option>K15</option>
-                                                    </select>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="assignment-title" class="form-label  pd-20">Ngày sinh</label>
-                                                    <input type="date" id="start" name="trip-start" value="" min="2000-01-01" max="2003-12-31">
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="" class="form-label ">Số điện thoại</label>
-                                                    <input type="text" id="" class="form-control" value="0123456789">
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="" class="form-label ">Email</label>
-                                                    <input type="text" id="" class="form-control" value="email@gmail.com">
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="" class="form-label ">Địa chỉ</label>
-                                                    <input type="text" id="" class="form-control" value="Hà Nội">
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="" class="form-label ">Ảnh</label>
-                                                    <input type="file" id="" class="form-control">
-                                                </div>
-                                            </fieldset>
-                                        </form>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                                        <button type="button" class="btn btn-info">Sửa</button>
-                                    </div>
-                                </div>
-                            </div>
-                            </div>
-                            <!-- Delete student -->
-                            <button type="button" class="btn btn-danger table-btn" data-bs-toggle="modal" data-bs-target="#delete-student"><i class="far fa-trash-alt pd-4"></i>Xóa</button>
-                            <div class="modal fade" id="delete-student" tabindex="-1" aria-labelledby="delete-student-Label" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="modalLabel">Xác nhận xóa</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            Bạn có chắc chắn muốn xóa hay không?
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                                            <button type="button" class="btn btn-info">Xóa</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
+                <tbody id="listStudent">
+ 
                 </tbody>
+
+                 <!-- Form Edit student info -->
+                <div class="modal fade" id="update-student-info" tabindex="-1" aria-labelledby="update-student-info-Label" aria-hidden="true">
+                    <div class="modal-dialog modal-xl mt-0">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modalLabel">Sửa thông tin sinh viên</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <fieldset >
+                                        <div class="mb-3">
+                                            <label for="" class="form-label ">Họ và tên</label>
+                                            <input type="text" id="nameStudentFix" class="form-control" value="Nguyễn Mộng Mơ">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="" class="form-label ">Ngành</label>
+                                            <select id="selectMajorStudentFix" class="form-select">
+                                                <option value="1">Công nghệ thông tin</option>
+                                                <option value="2">Kỹ thuật phần mềm</option>
+                                                <option value="3">Khoa học máy tính</option>
+                                                <option value="4">Hệ thống thông tin</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="" class="form-label ">Khóa</label>
+                                            <select id="selectYearStudentFix" class="form-select">
+                                                <option value="1">K13</option>
+                                                <option value="2">K14</option>
+                                                <option value="3">K15</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="assignment-title" class="form-label  pd-20">Ngày sinh</label>
+                                            <input type="date" id="birthdayStudentFix" name="trip-start" value="" min="2000-01-01" max="2003-12-31">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="" class="form-label ">Số điện thoại</label>
+                                            <input type="text" id="phoneStudentFix" class="form-control" value="0123456789">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="" class="form-label ">Email</label>
+                                            <input type="text" id="emailStudentFix" class="form-control" value="email@gmail.com">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="" class="form-label ">Địa chỉ</label>
+                                            <input type="text" id="addressStudentFix" class="form-control" value="Hà Nội">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="" class="form-label ">Ảnh</label>
+                                            <input type="file" id="avatarStudentFix" class="form-control">
+                                        </div>
+                                    </fieldset>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                                <button type="button" onclick="updateStudent();" class="btn btn-info">Sửa</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Confirm Delete student -->
+                <div class="modal fade" id="delete-student" tabindex="-1" aria-labelledby="delete-student-Label" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modalLabel">Xác nhận xóa</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Bạn có chắc chắn muốn xóa hay không?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                                <button type="button" onclick="deleteStudent();" class="btn btn-info" data-bs-dismiss="modal">Xóa</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </table>
         </div>
     </div>

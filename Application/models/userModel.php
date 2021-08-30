@@ -218,6 +218,9 @@ class userModel extends DB
                         WHERE ma_sv = ?";
             $stmt = $this->conn->prepare($sql);
             $stmt->bind_param('sss', $majors, $kh, $id);
+            if(!$stmt->execute()){ 
+                return $rs;
+            }
 
         }else if($char == 'GV'){
             if($ns == null)
@@ -229,9 +232,9 @@ class userModel extends DB
                 
             $stmt = $this->conn->prepare($sql);
             $stmt->bind_param('ss', $ns, $id);
-        }
-        if(!$stmt->execute()){ 
-            return $rs;
+            if(!$stmt->execute()){ 
+                return $rs;
+            }
         }
 
         // update taikhoan table

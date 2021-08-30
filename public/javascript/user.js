@@ -95,6 +95,7 @@ function changePass() {
 
     if (newPass != rePass) {
         alert("Nhập lại mật khẩu không khớp. Vui lòng nhập lại")
+        return false;
     }
 
     //Kiểm tra thông tin
