@@ -130,11 +130,12 @@ class groupModel extends DB
 
     /* member */
     function getMember($g_id){
-        $sql = "SELECT taikhoan.*, sinhvien.*, tennganh, tenkhoahoc FROM sinhvien 
+        $sql = "SELECT taikhoan.*, sinhvien.*, tennganh, tenkhoahoc, tendetai FROM sinhvien 
                 INNER JOIN taikhoan on taikhoan.ma_taikhoan = sinhvien.ma_sv
                 INNER JOIN nganh on nganh.ma_nganh = sinhvien.ma_nganh
                 INNER JOIN khoahoc on khoahoc.ma_khoahoc = sinhvien.ma_khoahoc
                 INNER JOIN chitietnhom on chitietnhom.ma_sv = sinhvien.ma_sv
+                INNER JOIN detai on detai.ma_sv = sinhvien.ma_sv
                 WHERE ma_nhom = ? AND hoatdong = 1";
 
         $stmt = $this->conn->prepare($sql);
@@ -147,6 +148,7 @@ class groupModel extends DB
             $user = array();
             $user['id'] = $row['ma_taikhoan'];
             $user['name'] = $row['hoten'];
+            $user['thesis'] = $row['tendetai'];
             $user['active'] = $row['hoatdong'];
             $user['role'] = $row['loaitaikhoan'];
             $user['birthday'] = $row['ngaysinh'];

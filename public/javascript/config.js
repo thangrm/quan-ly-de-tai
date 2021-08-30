@@ -25,17 +25,30 @@ function getStorageUrl($url) {
     return origin + '/' + folder + '/storage/' + $url;
 }
 
-function dateFormat(dateString, time = false) {
+function dateFormat(dateString, time = false, type = "vn") {
     if (dateString == null) {
         return '';
     }
     let date = new Date(dateString);
+
+    let day = date.getDate();
     let month = date.getMonth() + 1;
-    if (date.getMonth() < 10) {
+    let year = date.getFullYear();
+
+    if (month < 10) {
         month = '0' + month;
     }
 
-    format = date.getDate() + "/" + month + "/" + date.getFullYear();
+    if (day < 10) {
+        day = '0' + day;
+    }
+
+    if (type === "vn") {
+        format = day + "/" + month + "/" + year;
+    } else {
+        format = year + "-" + month + "-" + day;
+    }
+
     if (time == true) {
         format = date.getHours() + ':' + date.getMinutes() + ', ' + format;
     }

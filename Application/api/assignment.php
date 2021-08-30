@@ -109,17 +109,19 @@
                         return;
                     }
 
-                    $tempDate = explode('-', $hannop);
-                    if(count($tempDate) != 3){
-                        $validate = false;
-                    }else{
-                        if(is_numeric($tempDate[0]) && is_numeric($tempDate[1]) && is_numeric($tempDate[2])){
-                            $validate = checkdate($tempDate[1], $tempDate[2], $tempDate[0]);
-                        }else{
+                    if($hannop != null){
+                        $tempDate = explode('-', $hannop);
+                        if(count($tempDate) != 3){
                             $validate = false;
+                        }else{
+                            if(is_numeric($tempDate[0]) && is_numeric($tempDate[1]) && is_numeric($tempDate[2])){
+                                $validate = checkdate($tempDate[1], $tempDate[2], $tempDate[0]);
+                            }else{
+                                $validate = false;
+                            }
                         }
                     }
-
+                    
                     if(!$validate){
                         echo $this->responseStatus(400); 
                         return;
@@ -162,14 +164,16 @@
                         $validate = false;
                     }
 
-                    $tempDate = explode('-', $hannop);
-                    if(count($tempDate) != 3){
-                        $validate = false;
-                    }else{
-                        if(is_numeric($tempDate[0]) && is_numeric($tempDate[1]) && is_numeric($tempDate[2])){
-                            $validate = checkdate($tempDate[1], $tempDate[2], $tempDate[0]);
-                        }else{
+                    if($hannop != null){
+                        $tempDate = explode('-', $hannop);
+                        if(count($tempDate) != 3){
                             $validate = false;
+                        }else{
+                            if(is_numeric($tempDate[0]) && is_numeric($tempDate[1]) && is_numeric($tempDate[2])){
+                                $validate = checkdate($tempDate[1], $tempDate[2], $tempDate[0]);
+                            }else{
+                                $validate = false;
+                            }
                         }
                     }
 
@@ -263,7 +267,7 @@
                     
                     // validate input
                     if($assignment == null){
-                        $rs = ['update'=>false,
+                        $rs = ['submit'=>false,
                                'message' => 'Mã chi tiết bài tập không tồn tại',
                                'cod' => 200];
                         echo $this->response($rs);

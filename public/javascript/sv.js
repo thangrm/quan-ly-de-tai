@@ -382,7 +382,8 @@ function setListAssignment() {
         data: { gid: gid },
         success: function(response) {
             if (typeof response === 'object') {
-                listGroup = response;
+                response = response.reverse();
+                listAssignment = response;
                 let html = "";
                 response.forEach(function(element) {
                     let assignmentUrl = 'sv/group/viewassignment?aid=' + element['id'];
@@ -444,7 +445,6 @@ function setDetailAssignment() {
                             $("#fileSubmitted").text(nameFile);
                             $("#fileSubmitted").attr("href", getStorageUrl(urlDownload));
                             $("#fileSubmitted").attr("download", nameFile);
-                            console.log(element['dateSubmit']);
                             $("#dateSumitted").text("Đã nộp: " + dateFormat(element['dateSubmit'], true));
                         }
                     }
@@ -456,9 +456,7 @@ function setDetailAssignment() {
 }
 
 function submitAssignment() {
-    let url = new URL(window.location.href);
-    var aid = url.searchParams.get("aid");
-    if (aid == null) {
+    if (detailAssignmentlID == null) {
         return false;
     }
 
@@ -474,19 +472,24 @@ function submitAssignment() {
     //gọi Ajax
     $.ajax({
         async: false,
-        url: getAPIUrl("assignment/submit/" + aid),
+        url: getAPIUrl("assignment/submit/" + detailAssignmentlID),
         method: "POST",
         processData: false,
         mimeType: "multipart/form-data",
         contentType: false,
         data: formData,
         success: function(response) {
+            console.log(response);
             let rs = JSON.parse(response);
             if (rs['submit'] == true) {
                 alert("Đã gửi bài thành công");
                 setDetailAssignment();
             } else {
-                alert("Vui lòng thử lại sau");
+                if (rs['message'] != "") {
+                    alert(rs['message']);
+                } else {
+                    alert("Vui lòng thử lại sau");
+                }
             }
             return false;
         }

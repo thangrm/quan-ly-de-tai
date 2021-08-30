@@ -7,9 +7,9 @@
             <fieldset>
                 <div class="mb-3 ">
                     <label for="" class="form-label">Tên nhóm</label>
-                    <input type="text" class="form-control" id="">
+                    <input type="text" id="groupNameCreate" class="form-control" id="">
                 </div>
-                <button type="submit" class="btn btn-primary btn-warning w-15">Tạo</button>
+                <button type="submit" onclick="createGroup();" class="btn btn-primary btn-warning w-15">Tạo</button>
             </fieldset>
         </form>
     </div>
