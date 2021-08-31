@@ -49,6 +49,12 @@ function updateUser() {
     if (phone == "") {
         alert("Số điện thoại không được để trống");
         return false;
+    } else {
+        let re = /^[0-9]{10,12}$/;
+        if (!re.test(phone)) {
+            alert("Số điện thoại không hợp lệ");
+            return false;
+        }
     }
 
     if (address == "") {

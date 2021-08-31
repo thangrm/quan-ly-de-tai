@@ -113,6 +113,14 @@ function createStudent() {
         return false;
     }
 
+    if (phone != "") {
+        let re = /^[0-9]{10,12}$/;
+        if (!re.test(phone)) {
+            alert("Số điện thoại không hợp lệ");
+            return false;
+        }
+    }
+
 
     let formData = new FormData();
     formData.append("role", "sv");
@@ -167,6 +175,14 @@ function updateStudent() {
     if (name == "") {
         alert("Tên không được để trống");
         return false;
+    }
+
+    if (phone != "") {
+        let re = /^[0-9]{10,12}$/;
+        if (!re.test(phone)) {
+            alert("Số điện thoại không hợp lệ");
+            return false;
+        }
     }
 
     let formData = new FormData();
@@ -325,6 +341,20 @@ function createTeacher() {
     if (ns == "") {
         alert("Số lượng sinh viên không được để trống");
         return false;
+    } else {
+        let re = /^[0-9]*$/;
+        if (!re.test(ns)) {
+            alert("Số lượng sinh viên phải là một số");
+            return false;
+        }
+    }
+
+    if (phone != "") {
+        let re = /^[0-9]{10,12}$/;
+        if (!re.test(phone)) {
+            alert("Số điện thoại không hợp lệ");
+            return false;
+        }
     }
 
     let formData = new FormData();
@@ -388,6 +418,20 @@ function updateTeacher() {
     if (ns == "") {
         alert("Số lượng sinh viên không được để trống");
         return false;
+    } else {
+        let re = /^[0-9]*$/;
+        if (!re.test(ns)) {
+            alert("Số lượng sinh viên phải là một số");
+            return false;
+        }
+    }
+
+    if (phone != "") {
+        let re = /^[0-9]{10,12}$/;
+        if (!re.test(phone)) {
+            alert("Số điện thoại không hợp lệ");
+            return false;
+        }
     }
 
     let formData = new FormData();
