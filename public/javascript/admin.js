@@ -121,6 +121,13 @@ function createStudent() {
         }
     }
 
+    if (email != "") {
+        let re = /^[a-z][a-z0-9_\.]{5,32}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$/;
+        if (!re.test(email)) {
+            alert("Địa chỉ email không hợp lệ");
+            return false;
+        }
+    }
 
     let formData = new FormData();
     formData.append("role", "sv");
@@ -181,6 +188,14 @@ function updateStudent() {
         let re = /^[0-9]{10,12}$/;
         if (!re.test(phone)) {
             alert("Số điện thoại không hợp lệ");
+            return false;
+        }
+    }
+
+    if (email != "") {
+        let re = /^[a-z][a-z0-9_\.]{5,32}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$/;
+        if (!re.test(email)) {
+            alert("Địa chỉ email không hợp lệ");
             return false;
         }
     }
@@ -357,6 +372,14 @@ function createTeacher() {
         }
     }
 
+    if (email != "") {
+        let re = /^[a-z][a-z0-9_\.]{5,32}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$/;
+        if (!re.test(email)) {
+            alert("Địa chỉ email không hợp lệ");
+            return false;
+        }
+    }
+
     let formData = new FormData();
     formData.append("role", "gv");
     formData.append("name", name);
@@ -430,6 +453,14 @@ function updateTeacher() {
         let re = /^[0-9]{10,12}$/;
         if (!re.test(phone)) {
             alert("Số điện thoại không hợp lệ");
+            return false;
+        }
+    }
+
+    if (email != "") {
+        let re = /^[a-z][a-z0-9_\.]{5,32}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$/;
+        if (!re.test(email)) {
+            alert("Địa chỉ email không hợp lệ");
             return false;
         }
     }

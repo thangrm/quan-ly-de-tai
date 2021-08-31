@@ -44,6 +44,12 @@ function updateUser() {
     if (email == "") {
         alert("Email không được để trống");
         return false;
+    } else {
+        let re = /^[a-z][a-z0-9_\.]{5,32}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$/;
+        if (!re.test(email)) {
+            alert("Địa chỉ email không hợp lệ");
+            return false;
+        }
     }
 
     if (phone == "") {
