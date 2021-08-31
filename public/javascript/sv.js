@@ -137,9 +137,9 @@ function setListThesis() {
                 $("#tbThesisList").html(html);
                 response.forEach(function(element) {
                     i++;
-                    if (element['approve'] == 1) {
+                    if (element['approve'] == 0) {
                         approve = '<span class="status waiting">Chờ duyệt</span>';
-                    } else if (element['approve'] == 0) {
+                    } else if (element['approve'] == 1) {
                         approve = '<span class="status approved">Đã duyệt</span>';
                     }
                     html += '<tr>';
