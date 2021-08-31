@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th8 19, 2021 lúc 04:20 PM
+-- Thời gian đã tạo: Th8 31, 2021 lúc 05:12 AM
 -- Phiên bản máy phục vụ: 10.4.19-MariaDB
 -- Phiên bản PHP: 8.0.6
 
@@ -20,8 +20,7 @@ SET time_zone = "+00:00";
 --
 -- Cơ sở dữ liệu: `quanlydetai`
 --
-CREATE DATABASE quanlydetai
-USE quanlydetai
+
 -- --------------------------------------------------------
 
 --
@@ -42,14 +41,9 @@ CREATE TABLE `baitap` (
 --
 
 INSERT INTO `baitap` (`ma_baitap`, `ma_nhom`, `tieude`, `noidung`, `ngaydang`, `hannop`) VALUES
-(1, 1, 'Nộp báo cáo tiến độ tuần 1', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi convallis vulputate ligula, ac convallis velit luctus et. Proin eleifend ex sem, eget ornare ipsum imperdiet a.', '2021-08-13 14:09:34', NULL),
-(2, 1, 'Nộp báo cáo tiến độ tuần 2', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi convallis vulputate ligula, ac convallis velit luctus et. Proin eleifend ex sem, eget ornare ipsum imperdiet a.', '2021-08-13 14:09:34', NULL),
-(3, 1, 'Nộp báo cáo tiến độ tuần 3', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi convallis vulputate ligula, ac convallis velit luctus et. Proin eleifend ex sem, eget ornare ipsum imperdiet a.', '2021-08-13 14:09:34', NULL),
-(4, 2, 'Tiến độ tuần 1', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi convallis vulputate ligula, ac convallis velit luctus et. Proin eleifend ex sem, eget ornare ipsum imperdiet a.', '2021-08-13 14:09:34', NULL),
-(5, 2, 'Tiến độ tuần 2', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi convallis vulputate ligula, ac convallis velit luctus et. Proin eleifend ex sem, eget ornare ipsum imperdiet a.', '2021-08-13 14:09:34', NULL),
-(6, 4, 'Consectetur adipiscing elit', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi convallis vulputate ligula, ac convallis velit luctus et. Proin eleifend ex sem, eget ornare ipsum imperdiet a.', '2021-08-13 14:09:34', NULL),
-(7, 5, ' Morbi convallis vulputate ligula', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi convallis vulputate ligula, ac convallis velit luctus et. Proin eleifend ex sem, eget ornare ipsum imperdiet a.', '2021-08-13 14:09:34', NULL),
-(8, 3, 'Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi convallis vulputate ligula, ac convallis velit luctus et. Proin eleifend ex sem, eget ornare ipsum imperdiet a.', '2021-08-13 14:09:34', NULL);
+(1, 1, 'Nộp báo cáo tiến độ tuần 1', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi convallis vulputate ligula, ac convallis velit luctus et. Proin eleifend ex sem, eget ornare ipsum imperdiet a.', '2021-08-31 10:07:24', '2021-09-01 00:00:00'),
+(2, 1, 'Nộp báo cáo tiến độ tuần 2', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi convallis vulputate ligula, ac convallis velit luctus et. Proin eleifend ex sem, eget ornare ipsum imperdiet a.', '2021-08-31 10:07:34', '2021-09-08 00:00:00'),
+(3, 1, 'Nộp báo cáo tiến độ tuần 3', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi convallis vulputate ligula, ac convallis velit luctus et. Proin eleifend ex sem, eget ornare ipsum imperdiet a.', '2021-08-31 10:07:45', '2021-09-15 00:00:00');
 
 --
 -- Bẫy `baitap`
@@ -62,14 +56,8 @@ WHERE ma_nhom = NEW.ma_nhom
 $$
 DELIMITER ;
 DELIMITER $$
-CREATE TRIGGER `tg_before_delete_baitap` BEFORE DELETE ON `baitap` FOR EACH ROW BEGIN
-	DELETE ykien 
-    FROM ykien INNER JOIN chitietbaitap ON ykien.ma_chitietbaitap = chitietbaitap.ma_chitietbaitap 
-    WHERE ma_baitap = OLD.ma_baitap;
-    
-	DELETE FROM chitietbaitap 
-    WHERE ma_baitap = OLD.ma_baitap;
-END
+CREATE TRIGGER `tg_before_delete_baitap` BEFORE DELETE ON `baitap` FOR EACH ROW DELETE FROM chitietbaitap 
+WHERE ma_baitap = OLD.ma_baitap
 $$
 DELIMITER ;
 
@@ -93,17 +81,21 @@ CREATE TABLE `chitietbaitap` (
 --
 
 INSERT INTO `chitietbaitap` (`ma_chitietbaitap`, `ma_baitap`, `ma_sv`, `file`, `diem`, `thoigiannop`) VALUES
-(1, 1, 'SV2018601856', NULL, NULL, NULL),
-(2, 1, 'SV2018603659', NULL, NULL, NULL),
-(3, 1, 'SV2018604249', NULL, NULL, NULL),
-(4, 2, 'SV2018601856', NULL, NULL, NULL),
-(5, 2, 'SV2018603659', NULL, NULL, NULL),
-(6, 2, 'SV2018604249', NULL, NULL, NULL),
-(7, 3, 'SV2018601856', NULL, NULL, NULL),
-(8, 3, 'SV2018603659', NULL, NULL, NULL),
-(9, 3, 'SV2018604249', NULL, NULL, NULL),
-(10, 4, 'SV2020000123', NULL, NULL, NULL),
-(11, 5, 'SV2020000123', NULL, NULL, NULL);
+(1, 1, 'SV2020000123', NULL, NULL, NULL),
+(2, 1, 'SV2021200000', NULL, NULL, NULL),
+(4, 2, 'SV2020000123', NULL, NULL, NULL),
+(5, 2, 'SV2021200000', NULL, NULL, NULL),
+(7, 3, 'SV2020000123', NULL, NULL, NULL),
+(8, 3, 'SV2021200000', 'NguyenVanToan_BaoCao.txt', 90, '2021-08-31 10:08:59');
+
+--
+-- Bẫy `chitietbaitap`
+--
+DELIMITER $$
+CREATE TRIGGER `tg_before_delete_chitietbaitap` BEFORE DELETE ON `chitietbaitap` FOR EACH ROW DELETE FROM ykien
+WHERE ma_chitietbaitap = OLD.ma_chitietbaitap
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -121,10 +113,8 @@ CREATE TABLE `chitietnhom` (
 --
 
 INSERT INTO `chitietnhom` (`ma_nhom`, `ma_sv`) VALUES
-(1, 'SV2018601856'),
-(1, 'SV2018603659'),
-(1, 'SV2018604249'),
-(2, 'SV2020000123');
+(1, 'SV2020000123'),
+(1, 'SV2021200000');
 
 --
 -- Bẫy `chitietnhom`
@@ -165,10 +155,11 @@ CREATE TABLE `detai` (
 --
 
 INSERT INTO `detai` (`ma_detai`, `ma_theloai`, `ma_gv`, `ma_sv`, `tendetai`, `mota`, `pheduyet`, `hoanthanh`) VALUES
-(1, 8, 'GV2021080010', 'SV2018601856', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit', 'Fusce aliquet vitae nunc nec eleifend. Mauris eget orci at urna vestibulum congue. Donec dapibus imperdiet mauris id pulvinar. Aliquam quis dignissim turpis. Nullam ut tincidunt massa. Aliquam tristique tincidunt lobortis.', 1, 0),
-(2, 8, 'GV2021080010', 'SV2018603659', 'Morbi convallis vulputate ligula, ac convallis velit luctus et.', 'Phasellus pulvinar rutrum odio accumsan cursus. Etiam quis magna et orci laoreet rutrum ac quis risus. Sed pulvinar, erat at ornare tristique, velit sem rhoncus velit, sed gravida tortor metus non velit.', 1, 0),
-(4, 4, 'GV2021080011', 'SV2020000123', 'Etiam pulvinar finibus leo ut pharetra. ', 'Donec eu ligula dapibus, rutrum quam vel, finibus diam. Ut ipsum turpis, fermentum non porta feugiat', 0, 0),
-(7, 1, 'GV2021000003', 'SV2021200000', 'Test thesis', 'this test add new thesis', 0, 0);
+(1, 8, 'GV2021080010', 'SV2018601856', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit', 'Fusce aliquet vitae nunc nec eleifend. Mauris eget orci at urna vestibulum congue. Donec dapibus imperdiet mauris id pulvinar. Aliquam quis dignissim turpis. Nullam ut tincidunt massa. Aliquam tristique tincidunt lobortis.', 0, 0),
+(2, 8, 'GV2021080010', 'SV2018603659', 'Morbi convallis vulputate ligula, ac convallis velit luctus et.', 'Phasellus pulvinar rutrum odio accumsan cursus. Etiam quis magna et orci laoreet rutrum ac quis risus. Sed pulvinar, erat at ornare tristique, velit sem rhoncus velit, sed gravida tortor metus non velit.', 0, 0),
+(3, 9, 'GV2021080010', 'SV2018604249', ' Phasellus sed nulla at mi semper scelerisque', 'Sed auctor metus ut maximus tincidunt. In fermentum at urna et consequat. Nunc congue nulla sed lacus tempus tempor. In hac habitasse platea dictumst.', 0, 0),
+(4, 4, 'GV2021080010', 'SV2020000123', 'Etiam pulvinar finibus leo ut pharetra. ', 'Donec eu ligula dapibus, rutrum quam vel, finibus diam. Ut ipsum turpis, fermentum non porta feugiat', 1, 0),
+(5, 2, 'GV2021080010', 'SV2021200000', 'Thesis', 'Donec facilisis, velit at commodo scelerisque, lectus nibh pharetra dolor, eu varius arcu ex sit amet libero. Sed fringilla dui pulvinar sapien vestibulum maximus. In massa mi, efficitur a arcu vel, auctor efficitur arcu. ', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -265,19 +256,19 @@ CREATE TABLE `nhom` (
   `ma_nhom` int(11) NOT NULL,
   `ma_gv` varchar(12) NOT NULL,
   `tennhom` varchar(100) NOT NULL,
-  `hoatdong` tinyint(1) DEFAULT 1
+  `hoatdong` int(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Đang đổ dữ liệu cho bảng `nhom`
 --
 
-INSERT INTO `nhom` (`ma_nhom`, `ma_gv`, `tennhom`) VALUES
-(1, 'GV2021080010', 'N01-KTPM01K13'),
-(2, 'GV2021080011', 'N02-KTPM01K13'),
-(3, 'GV2021080012', 'N03-KTPM01K13'),
-(4, 'GV2021080010', 'N02-KTPM01K13'),
-(5, 'GV2021080011', 'N01-KTPM01K15');
+INSERT INTO `nhom` (`ma_nhom`, `ma_gv`, `tennhom`, `hoatdong`) VALUES
+(1, 'GV2021080010', 'N01-KTPM01K13', 1),
+(2, 'GV2021080011', 'N01-CNTT01K13', 1),
+(3, 'GV2021080012', 'N03-KHMT01K13', 1),
+(4, 'GV2021080010', 'N02-KTPM01K13', 1),
+(5, 'GV2021080011', 'N01-KTPM01K15', 1);
 
 -- --------------------------------------------------------
 
@@ -327,15 +318,15 @@ CREATE TABLE `taikhoan` (
 
 INSERT INTO `taikhoan` (`ma_taikhoan`, `matkhau`, `loaitaikhoan`, `hoten`, `hoatdong`, `ngaysinh`, `anh`, `email`, `sdt`, `diachi`) VALUES
 ('AD2021000123', '$2y$10$KD1d9FiZbxVv7HtgcD9ALeRov8PwqCj4xwCi.xGi36RvGLHt9OhGK', 1, 'Admin', 1, '2000-11-18', NULL, 'admin@email.com', '099998888', 'Đại học công nghiệp Hà Nội'),
-('GV2021000003', '$2y$10$5swJILON7gpJ5FayU3iJ/OeEAX.qs7e/vdRUxSCoHaZpundvL/hr6', 2, 'Nguyễn Văn Minh', 1, NULL, NULL, 'minh@email.com', '09xxxxxxxx', 'Hà Nội'),
-('GV2021080010', '$2y$10$a36SHIau8hk9aqQuvYwtzuIvmXfkQ/Rxfxiu0vOJMHThT.ARq794S', 2, 'Nguyễn Thu Ngân', 1, NULL, NULL, 'ngan@email.com', '0811112222', 'Bắc Từ Liêm, Hà Nội'),
-('GV2021080011', '$2y$10$a36SHIau8hk9aqQuvYwtzuIvmXfkQ/Rxfxiu0vOJMHThT.ARq794S', 2, 'Doãn Hải Giang', 1, NULL, NULL, 'haigiang@email.com', '0922223333', 'Cầu Giấy, Hà Nội'),
+('GV2021000003', '$2y$10$5swJILON7gpJ5FayU3iJ/OeEAX.qs7e/vdRUxSCoHaZpundvL/hr6', 2, 'Nguyễn Văn Minh', 1, '1990-01-03', NULL, 'minh@email.com', '09xxxxxxxx', 'Hà Nội'),
+('GV2021080010', '$2y$10$a36SHIau8hk9aqQuvYwtzuIvmXfkQ/Rxfxiu0vOJMHThT.ARq794S', 2, 'Nguyễn Thu Ngân', 1, '1990-01-01', 'GV2021080010.png', 'ngan@email.com', '0811112222', 'Bắc Từ Liêm, Hà Nội'),
+('GV2021080011', '$2y$10$a36SHIau8hk9aqQuvYwtzuIvmXfkQ/Rxfxiu0vOJMHThT.ARq794S', 2, 'Doãn Hải Giang', 1, '1990-01-02', NULL, 'haigiang@email.com', '0922223333', 'Cầu Giấy, Hà Nội'),
 ('GV2021080012', '$2y$10$wSGaqAdi4xIaUay/5CwXX.8Sm2ZpnnwU.DAVfx54CxnYTVRLUE8S6', 2, 'Nguyễn Văn An', 1, '2000-01-01', NULL, 'a@email.com', '0123456789', 'Hải Dương'),
-('SV2018601856', '$2y$10$a36SHIau8hk9aqQuvYwtzuIvmXfkQ/Rxfxiu0vOJMHThT.ARq794S', 3, 'Hoàng Văn Thắng', 1, '2000-11-18', NULL, 'hoangthang@email.com', '099998888', 'Thường Tín, Hà Nội'),
-('SV2018603659', '$2y$10$a36SHIau8hk9aqQuvYwtzuIvmXfkQ/Rxfxiu0vOJMHThT.ARq794S', 3, 'Nguyễn Phương Thảo', 1, '2000-01-25', NULL, 'nguyenthao@email.com', '0123456789', 'Đông Anh, Hà Nội'),
-('SV2018604249', '$2y$10$a36SHIau8hk9aqQuvYwtzuIvmXfkQ/Rxfxiu0vOJMHThT.ARq794S', 3, 'An Thị Thanh Thảo', 1, '2000-01-01', NULL, 'anthao@email.com', '0912345678', 'Hải Dương'),
-('SV2020000123', '$2y$10$wSGaqAdi4xIaUay/5CwXX.8Sm2ZpnnwU.DAVfx54CxnYTVRLUE8S6', 3, 'Nguyễn Thị Bình', 1, '2000-02-02', NULL, 'b@email.com', '0987654321', 'Bắc Ninh'),
-('SV2021200000', '$2y$10$WFvPePMMqVAwYbsw7ypR5eMtwbwc0Utwh.fpYzTyPPA/j1OviPy3G', 3, 'Nguyễn Văn Toàn', 1, NULL, NULL, 'toan@email.com', '09xxxxxxxx', 'Hà Nội');
+('SV2018601856', '$2y$10$a36SHIau8hk9aqQuvYwtzuIvmXfkQ/Rxfxiu0vOJMHThT.ARq794S', 3, 'Hoàng Văn Thắng', 1, '2000-11-18', 'SV2018601856.jpg', 'hoangthang@email.com', '099998888', 'Thường Tín, Hà Nội'),
+('SV2018603659', '$2y$10$a36SHIau8hk9aqQuvYwtzuIvmXfkQ/Rxfxiu0vOJMHThT.ARq794S', 3, 'Nguyễn Phương Thảo', 1, '2000-01-25', 'SV2018603659.jpg', 'nguyenthao@email.com', '0123456789', 'Đông Anh, Hà Nội'),
+('SV2018604249', '$2y$10$a36SHIau8hk9aqQuvYwtzuIvmXfkQ/Rxfxiu0vOJMHThT.ARq794S', 3, 'An Thị Thanh Thảo', 1, '2000-01-01', 'SV2018604249.png', 'anthao@email.com', '0912345678', 'Hải Dương'),
+('SV2020000123', '$2y$10$a36SHIau8hk9aqQuvYwtzuIvmXfkQ/Rxfxiu0vOJMHThT.ARq794S', 3, 'Nguyễn Thị Bình', 1, '2000-02-02', NULL, 'b@email.com', '0987654321', 'Bắc Ninh'),
+('SV2021200000', '$2y$10$a36SHIau8hk9aqQuvYwtzuIvmXfkQ/Rxfxiu0vOJMHThT.ARq794S', 3, 'Nguyễn Văn Toàn', 1, '2002-01-01', NULL, 'toan@email.com', '09xxxxxxxx', 'Hà Nội');
 
 -- --------------------------------------------------------
 
@@ -382,11 +373,7 @@ CREATE TABLE `ykien` (
 --
 
 INSERT INTO `ykien` (`ma_ykien`, `ma_chitietbaitap`, `ma_taikhoan`, `noidung_ykien`, `thoigian_ykien`) VALUES
-(1, 1, 'GV2021080010', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit', '2021-08-13 15:27:21'),
-(2, 1, 'SV2018601856', 'Pellentesque aliquet dolor id velit tincidunt, a luctus odio posuere', '2021-08-13 15:27:57'),
-(3, 1, 'GV2021080010', 'Donec vitae nulla sed leo luctus placerat eget eu velit', '2021-08-13 15:28:27'),
-(4, 2, 'GV2021080010', 'Vestibulum congue nisi in ligula pretium, eget sodales dui vulputate. ', '2021-08-13 15:29:03'),
-(5, 2, 'SV2018603659', 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. ', '2021-08-13 15:29:25');
+(34, 8, 'GV2021080010', 'varius vitae congue vita', '2021-08-31 10:09:44');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -493,19 +480,19 @@ ALTER TABLE `ykien`
 -- AUTO_INCREMENT cho bảng `baitap`
 --
 ALTER TABLE `baitap`
-  MODIFY `ma_baitap` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `ma_baitap` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT cho bảng `chitietbaitap`
 --
 ALTER TABLE `chitietbaitap`
-  MODIFY `ma_chitietbaitap` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `ma_chitietbaitap` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT cho bảng `detai`
 --
 ALTER TABLE `detai`
-  MODIFY `ma_detai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ma_detai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT cho bảng `detaimau`
@@ -529,19 +516,19 @@ ALTER TABLE `nganh`
 -- AUTO_INCREMENT cho bảng `nhom`
 --
 ALTER TABLE `nhom`
-  MODIFY `ma_nhom` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ma_nhom` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT cho bảng `theloai`
 --
 ALTER TABLE `theloai`
-  MODIFY `ma_theloai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `ma_theloai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT cho bảng `ykien`
 --
 ALTER TABLE `ykien`
-  MODIFY `ma_ykien` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ma_ykien` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
@@ -606,7 +593,7 @@ ALTER TABLE `sinhvien`
 -- Các ràng buộc cho bảng `ykien`
 --
 ALTER TABLE `ykien`
-  ADD CONSTRAINT `fk_ykien_baitap` FOREIGN KEY (`ma_chitietbaitap`) REFERENCES `chitietbaitap` (`ma_chitietbaitap`),
+  ADD CONSTRAINT `fk_ykien_chitietbaitap` FOREIGN KEY (`ma_chitietbaitap`) REFERENCES `chitietbaitap` (`ma_chitietbaitap`),
   ADD CONSTRAINT `fk_ykien_taikhoan` FOREIGN KEY (`ma_taikhoan`) REFERENCES `taikhoan` (`ma_taikhoan`);
 COMMIT;
 
