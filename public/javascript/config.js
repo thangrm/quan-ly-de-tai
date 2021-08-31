@@ -1,5 +1,5 @@
 let origin = window.location.origin;
-let folder = 'QuanLyDeTai'
+let folder = 'QuanLyDeTaiTotNghiep_PHP'
 
 function getBaseUrl($url) {
     return origin + '/' + folder + '/' + $url;

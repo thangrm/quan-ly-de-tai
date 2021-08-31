@@ -512,7 +512,7 @@ function setOpinion() {
             if (typeof response === 'object') {
                 let html = "";
                 html += '<label for=""  class="form-label">'
-                html += '<i class="far fa-comment-alt"></i>';
+                html += '<i class="far fa-comment-alt me-1"></i>';
                 html += 'Nhận xét';
                 html += '</label>';
 
@@ -538,7 +538,7 @@ function setOpinion() {
 
                 html += '<div class="comment-add">';
                 html += '<label for="" class="form-label">';
-                html += '<i class="fas fa-comment-medical"></i>';
+                html += '<i class="fas fa-comment-medical me-1"></i>';
                 html += 'Thêm nhận xét';
                 html += '</label>';
                 html += '<textarea class="form-control" id="formAddOpinion" rows="3"></textarea>';

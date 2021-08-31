@@ -155,7 +155,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                                <button type="button" onclick="updateStudent();" class="btn btn-info">Sửa</button>
+                                <button type="button" onclick="updateStudent();" class="btn btn-info me-1">Sửa</button>
                             </div>
                         </div>
                     </div>

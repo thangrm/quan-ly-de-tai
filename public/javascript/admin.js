@@ -60,7 +60,7 @@ function setListStudent() {
                     html += '<td>' + element['address'] + '</td>';
                     html += '<td class="text-center"><img style="width: 30px;" src="' + urlAvatar + '"></td>';
                     html += '<td>';
-                    html += '<button type="button" onclick="viewStudent(\'' + element['id'] + '\');" class="btn btn-secondary thesis-action-btn" data-bs-toggle="modal" data-bs-target="#update-student-info"><i class="far fa-edit pd-4"></i>Sửa</button>';
+                    html += '<button type="button" onclick="viewStudent(\'' + element['id'] + '\');" class="btn btn-secondary thesis-action-btn me-1" data-bs-toggle="modal" data-bs-target="#update-student-info"><i class="far fa-edit pd-4"></i>Sửa</button>';
                     html += '<button type="button" onclick="markStudent(\'' + element['id'] + '\');" class="btn btn-danger table-btn" data-bs-toggle="modal" data-bs-target="#delete-student"><i class="far fa-trash-alt pd-4"></i>Xóa</button>';
                     html += '</td>';
                     html += '</tr>';
@@ -271,7 +271,7 @@ function setListTeacher() {
                     html += '<td>' + element['address'] + '</td>';
                     html += '<td class="text-center"><img style="width: 30px;" src="' + urlAvatar + '"></td>';
                     html += '<td>';
-                    html += '<button type="button" onclick="viewTeacher(\'' + element['id'] + '\');" class="btn btn-secondary thesis-action-btn" data-bs-toggle="modal" data-bs-target="#update-lecturer-info"><i class="far fa-edit pd-4"></i>Sửa</button>';
+                    html += '<button type="button" onclick="viewTeacher(\'' + element['id'] + '\');" class="btn btn-secondary thesis-action-btn me-1" data-bs-toggle="modal" data-bs-target="#update-lecturer-info"><i class="far fa-edit pd-4"></i>Sửa</button>';
                     html += '<button type="button" onclick="markTeacher(\'' + element['id'] + '\');" class="btn btn-danger table-btn" data-bs-toggle="modal" data-bs-target="#delete-student"><i class="far fa-trash-alt pd-4"></i>Xóa</button>';
                     html += '</td>';
                     html += '</tr>';
@@ -477,7 +477,7 @@ function setListCategory() {
                     html += '<td>' + element['category_id'] + '</td>';
                     html += '<td>' + element['name'] + '</td>'
                     html += '<td>'
-                    html += '<button type="button" onclick="viewCategory(\'' + element['category_id'] + '\');" class="btn btn-secondary thesis-action-btn" data-bs-toggle="modal" data-bs-target="#update-thesis-topic"><i class="far fa-edit pd-4"></i>Sửa</button>';
+                    html += '<button type="button" onclick="viewCategory(\'' + element['category_id'] + '\');" class="btn btn-secondary thesis-action-btn me-1" data-bs-toggle="modal" data-bs-target="#update-thesis-topic"><i class="far fa-edit pd-4"></i>Sửa</button>';
                     html += '<button type="button" onclick="markCategory(\'' + element['category_id'] + '\');" class="btn btn-danger table-btn" data-bs-toggle="modal" data-bs-target="#delete-thesis-topic"><i class="far fa-trash-alt pd-4"></i>Xóa</button>';
                     html += '</td>';
                     html += '</tr>';

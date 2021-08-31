@@ -3,7 +3,7 @@
 class DB{
     private $servername = "localhost";
     private $username = "root";
-    private $password = "thangrm";
+    private $password = "";
     private $dbname = "quanlydetai";
     public $conn;
     function __construct(){

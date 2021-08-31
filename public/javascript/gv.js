@@ -113,7 +113,7 @@ function setListThesis() {
                     html += '</td>';
                     html += '<td class="thesis-action">';
                     html += '<!-- Xem chi tiết đề tài -->';
-                    html += '<button type="button" onclick="viewThesis(' + element['thesis_id'] + ');" class="btn btn-secondary thesis-action-btn" data-bs-toggle="modal" data-bs-target="#view-thesis">Xem</button>';
+                    html += '<button type="button" onclick="viewThesis(' + element['thesis_id'] + ');" class="btn btn-secondary thesis-action-btn me-1" data-bs-toggle="modal" data-bs-target="#view-thesis">Xem</button>';
                     html += '<!-- Duyệt đề tài -->';
                     if (element['approve'] == 0) {
                         html += '<button type="button" onclick="approveThesis(' + element['thesis_id'] + ');" class="btn btn-success thesis-action-btn" id="confirm-thesis">Duyệt</button>';
@@ -195,7 +195,7 @@ function setListExampleThesis() {
                     html += '<td>' + element['cat']['name'] + '</td>';
                     html += '<td>'
                     html += '<!-- Button trigger modal -->'
-                    html += '<button type="button" onclick="viewExampleThesis(' + element['example_id'] + ');" class="btn btn-secondary thesis-action-btn" data-bs-toggle="modal" data-bs-target="#update-thesis">Sửa</button>'
+                    html += '<button type="button" onclick="viewExampleThesis(' + element['example_id'] + ');" class="btn btn-secondary thesis-action-btn me-1" data-bs-toggle="modal" data-bs-target="#update-thesis">Sửa</button>'
 
                     html += '<!-- Button trigger modal -->'
                     html += '<button type="button" onclick="markExampleThesis(' + element['example_id'] + ');" class="btn btn-danger thesis-action-btn" data-bs-toggle="modal" data-bs-target="#delete-thesis">Xóa</button>'
@@ -934,7 +934,7 @@ function setOpinion() {
             if (typeof response === 'object') {
                 let html = "";
                 html += '<label for=""  class="form-label">'
-                html += '<i class="far fa-comment-alt"></i>';
+                html += '<i class="far fa-comment-alt me-1"></i>';
                 html += 'Nhận xét';
                 html += '</label>';
 
@@ -960,7 +960,7 @@ function setOpinion() {
 
                 html += '<div class="comment-add">';
                 html += '<label for="" class="form-label">';
-                html += '<i class="fas fa-comment-medical"></i>';
+                html += '<i class="fas fa-comment-medical me-1"></i>';
                 html += 'Thêm nhận xét';
                 html += '</label>';
                 html += '<textarea class="form-control" id="formAddOpinion" rows="3"></textarea>';
