@@ -429,7 +429,7 @@ function setDetailAssignment() {
                 $("#nameAssingment").text(response['title']);
                 $("#desAssingment").text(response['content']);
                 $("#postDate").text(dateFormat(response['postDate']));
-                $("#dateline").text(dateFormat(response['deadline']));
+                $("#deadline").text(dateFormat(response['deadline']));
 
                 response['detail'].forEach(function(element) {
                     if (element['sv_id'] == id) {
